@@ -20,14 +20,16 @@ Go to [Gantry 5 demo website](https://www.demo-gantry5.en-toutes-lettres.fr/en/
 - You will find some directories (particles, scss, js, images)
 - Copy the directories (including files) to ```root/templates/TEMPLATE_DIR/custom/``` via your FTP client (like FileZilla)
 
-Afer installation, don't forget to add these 2 lines
+TEMPLATE_DIR is your Gantry 5 template directory name (Ex g5_helium).
+
+After installation, don't forget to add these 2 lines
 ```scss
 @import 'dependencies';
 @import 'etl_repogridtab';
 ```
 in your custom CSS file, **custom.scss** (/templates/g5_hydrogen/custom/scss/**custom.scss**)
 
-or create this file and add these 2 lines with your text editor (/templates/g5_hydrogen/custom/scss/custom.scss)
+or create this file and add these 2 lines with your text editor (/templates/g5_hydrogen/custom/scss/custom.scss).
 
 
 # Changelog
