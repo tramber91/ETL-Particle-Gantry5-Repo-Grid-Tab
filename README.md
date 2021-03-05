@@ -1,4 +1,4 @@
-![Image](https://www.demo-gantry5.en-toutes-lettres.fr/images/particles/etl_repogithubtab_big.jpg)
+![Image](https://www.demo-gantry5.en-toutes-lettres.fr/images/particles/etl_particles_repogridtab.jpg)
 
 # Repository (Github) or Assets management particle for [Gantry] 5 Framework. 
 
