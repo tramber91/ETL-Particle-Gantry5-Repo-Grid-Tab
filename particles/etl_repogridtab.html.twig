@@ -1,0 +1,542 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{# We first count number of categories to remove tab if = 1 #}
+{% set case_indexcheck = 0 %}
+{% for case in particle.cases %}
+{% set case_indexcheck = loop.index %}
+{% endfor %}
+
+{% block javascript %}
+<script src="{{ url('gantry-theme://js/moment.min.js') }}"></script>
+{% endblock %}
+
+{% block particle %}
+    <div class="{{ particle.class|e }} etl-repogridtab" data-etl-repogridtab-id="{{ id }}">
+  {% if not particle.tabhome or particle.source == 'joomla' %}
+	{% if particle.title or particle.maindescription %}
+		<div class="etl-repogridtab-category">
+			<div class="etl-repogridtab-category-item{% if particle.mainimage %} etl-repogridtab-category-item-with-img{% endif %}">
+				{% if particle.mainimage and particle.mainimageloc == 'left' %}
+					<div class="etl-repogridtab-catimage g-block size-30 {{ particle.mainimageloc|e }}">
+							<img src="{{ url(particle.mainimage)|e }}" alt="{{ particle.title }}" />
+					</div>
+				{% endif %}
+				{% if particle.title or particle.maindescription %}
+				<div class="etl-repogridtab-category-item-text size-100">
+					{% if particle.title %}
+						<div class="etl-repogridtab-cattitle"><h2 class="g-title">{{ particle.title|raw }}</h2></div>
+					{% endif %}
+					{% if particle.maindescription %}
+						<div class="etl-repogridtab-maindescription">{{ particle.maindescription|raw }}</div>
+					{% endif %}
+				{% endif %}
+				</div>
+				{% if particle.mainimage and particle.mainimageloc == 'right' %}
+					<div class="etl-repogridtab-catimage g-block size-30 {{ particle.mainimageloc|e }}">
+							<img src="{{ url(particle.mainimage)|e }}" alt="{{ particle.title }}" />
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
+  {% endif %}
+  {% if not particle.source or particle.source == 'particle' %}
+{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+  <div id="tabs" class="etl-tabs{% if particle.tabstyle %} {{ particle.tabstyle }}{% endif %}">
+    <div>
+      <nav><ul>
+        {% for case in particle.cases %} 
+		{% set case_index = loop.index %}
+		{% if not case.tabremoval %}
+			{% if case_index == 1 %}{# accueil tab #}
+				{% if particle.tabhome %}{# add home tab - tab0 #}
+				<li>
+				  <span class="etl-tabs-wrapper-head">
+					<a href="#section-0">
+					 {% if particle.subtitletabhome == '' %}
+					  <span class="etl-tabs-wrapper-head-title etl-tabs-wrapper-head-subtitle-empty">{{ case.tabtitle|raw }}</span>
+					  <span class="etl-tabs-wrapper-head-subtitle etl-tabs-wrapper-head-subtitle-empty">&nbsp;</span>
+					  {% else %}
+					  <span class="etl-tabs-wrapper-head-title">{{ particle.titletabhome|raw }}</span>
+					  <span class="etl-tabs-wrapper-head-subtitle">{{ particle.subtitletabhome|raw }}</span>
+					  {% endif %}
+					</a>
+				  </span>
+				</li>
+				{% endif %}
+			{% endif %}
+			<li>
+			  <span class="etl-tabs-wrapper-head">
+				<a href="#section-{{ case_index }}">
+				  {% if case.tabsubtitle == '' %}
+					  <span class="etl-tabs-wrapper-head-title etl-tabs-wrapper-head-subtitle-empty">{{ case.tabtitle|raw }}</span>
+					  <span class="etl-tabs-wrapper-head-subtitle etl-tabs-wrapper-head-subtitle-empty">&nbsp;</span>
+				  {% else %}
+					  <span class="etl-tabs-wrapper-head-title">{{ case.tabtitle|raw }}</span>
+					  <span class="etl-tabs-wrapper-head-subtitle">{{ case.tabsubtitle|raw }}</span>
+				  {% endif %}
+				</a>
+			  </span>
+			</li>
+		{% endif %}
+		{% endfor %}
+      </nav></ul>
+{% endif %}{# End check number of categories to remove tab if = 1 #}
+      <div class="clearfix"></div>
+{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+      <div class="content">
+{% endif %}{# End check number of categories to remove tab if = 1 #}
+				{# Main Info Tab 0  #}
+				{% if particle.tabhome %}
+				<section id="section-0">{# add home tab - tab0 #}
+					<div class="etl-repogridtab-category">
+						<div class="etl-repogridtab-category-item{% if particle.mainimage %} etl-repogridtab-category-item-with-img{% endif %}">
+							{% if particle.mainimage and particle.mainimageloc == 'left' %}
+								<div class="etl-repogridtab-catimage g-block size-30 {{ particle.mainimageloc|e }}">
+										<img src="{{ url(particle.mainimage)|e }}" alt="{{ particle.title }}" />
+								</div>
+							{% endif %}
+							{% if particle.title or particle.maindescription %}
+							<div class="etl-repogridtab-category-item-text size-100">
+								{% if particle.title %}
+									<div class="etl-repogridtab-cattitle"><h2 class="g-title">{{ particle.title|raw }}</h2></div>
+								{% endif %}
+								{% if particle.maindescription %}
+									<div class="etl-repogridtab-catdescription">{{ particle.maindescription|raw }}</div>
+								{% endif %}
+							{% endif %}
+							</div>
+							{% if particle.mainimage and particle.mainimageloc == 'right' %}
+								<div class="etl-repogridtab-catimage g-block size-30 {{ particle.mainimageloc|e }}">
+										<img src="{{ url(particle.mainimage)|e }}" alt="{{ particle.title }}" />
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				</section>
+				{% endif %}
+		{# Start loop category #}
+        {% for case in particle.cases %}
+		{% set case_index = loop.index %}
+{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+        <section id="section-{{ case_index }}">
+{% endif %}{# End check number of categories to remove tab if = 1 #}
+				{# Category  #}
+				{% if case.repocattitle or case.repocatdescription or case.repocatimage %}
+					{% if case.repocatimage %}
+						<div class="etl-repogridtab-category">
+							<div class="etl-repogridtab-category-item{% if case.repocatimage %} etl-repogridtab-category-item-with-img{% endif %}">
+								{% if case.repocatimage and case.repoimageloc == 'left' %}
+									<div class="etl-repogridtab-catimage g-block size-30 {{ case.repoimageloc|e }}">
+										<img src="{{ url(case.repocatimage)|e }}" alt="{{ case.repocattitle }}" />
+									</div>
+								{% endif %}
+								{% if case.repocattitle or case.repocatdescription %}
+								<div class="etl-repogridtab-category-item-text size-100">
+									{% if case.repocattitle %}
+										<div class="etl-repogridtab-cattitle">{{ case.repocattitle }}</div>
+									{% endif %}
+									{% if case.repocatdescription %}
+										<div class="etl-repogridtab-catdescription">{{ case.repocatdescription|raw }}</div>
+									{% endif %}
+								{% endif %}
+								</div>
+								{% if case.repocatimage and case.repoimageloc == 'right' %}
+									<div class="etl-repogridtab-catimage g-block size-30 {{ case.repoimageloc|e }}">
+										<img src="{{ url(case.repocatimage)|e }}" alt="{{ case.repocattitle }}" />
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					{% else %}
+					<div class="etl-repogridtab-category">
+						<div class="etl-repogridtab-category-item">
+							<div class="etl-repogridtab-category-item-text size-100">
+								{% if case.repocattitle %}
+									<div class="etl-repogridtab-cattitle">{{ case.repocattitle }}</div>
+								{% endif %}
+								{% if case.repocatdescription %}
+									<div class="etl-repogridtab-catdescription">{{ case.repocatdescription|raw }}</div>
+								{% endif %}
+							</div>
+						</div>
+						</div>
+					{% endif %}
+				{% endif %}
+              {% for item in case.items %}{# Start loop items #}
+              <div class="etl-contenttabs-repo {{ case.catcols }} {% if item.repoimagecenter %} etl-imagefull-bloc{% endif %}{% if item.articlerelatedrepo %} etl-repogridtab-display-header-none{% endif %}">
+
+				<div class="etl-repogridtab-grid">
+					<div class="etl-repogridtab-grid-item etlreponumber-{{ case_index }}{{ loop.index }}">
+						{# Item title  #}
+						{# internal anchor target if needed not used at this time #}<div id="etl-anchor-{{ case_index }}{{ loop.index }}"></div>
+						{% if item.repotitle %}
+						<div class="etl-repogridtab-grid-item-titlerepo{% if item.title == '' %} etl-repogridtab-display-header-none{% endif %}{% if item.articlerelatedrepo %} etl-repogridtab-display-header-none{% endif %}{% if item.repotitlecenter %} etl-repogridtab-grid-item-titlerepo-center{% endif %}">
+							<span>
+								{{ item.repotitle }}
+							</span>
+						</div>
+						{% endif %}
+						{# Item Content Image + Texte  #}
+						<div class="etl-repogridtab-grid-item-wrapper">
+							{% if item.image %}
+							<div class="etl-repogridtab-grid-item-image{% if item.articlerelatedrepo %} etl-repogridtab-display-header-none{% endif %}">
+								<img src="{{ url(item.image)|e }}" alt="{{ item.title }}"/>
+							</div>
+							{% endif %}
+							<div class="etl-repogridtab-grid-item-content {% if item.image == '' %}etl-repogridtab-grid-item-content-no-image {% endif %}">
+								<div class="etl-repogridtab-grid-item-content-data {% if item.datacenter %}center {% endif %}{% if item.datacenteronlyphone %}center-only-phone {% endif %}">
+									{% if item.version or item.date %}
+									<div class="etl-repogridtab-grid-item-header">
+										{% if item.version %}
+										<div class="etl-repogridtab-grid-item-version">
+											<div class="etl-repogridtab-grid-item-prevalue">
+												<span>{{ particle.versiontitle }}</span>
+											</div>
+											<span>{{ item.version }}</span>
+										{% if item.versiontype %}<span class="etl-repogridtab-grid-item-versiontype">{{ item.versiontype }}</span>{% endif %}
+										{% if item.versionlicence %}<span class="etl-repogridtab-grid-item-versionlicence">{{ item.versionlicence }}</span>{% endif %}
+										</div>
+										{% endif %}
+										{% if item.date %}
+										<div class="etl-repogridtab-grid-item-date">
+											<div class="etl-repogridtab-grid-item-prevalue">
+												<span>{{ particle.datetitle }}</span>
+											</div>
+											<span>{{ item.date|date(particle.date_format_repo|default('j F Y')) }}</span>
+										</div>
+										{% endif %}
+									</div>
+									{% endif %}
+									{% if item.environments or item.maintype %}
+									<div class="etl-repogridtab-grid-item-environments">
+										{% if item.maintype %}<span class="etl-repogridtab-grid-item-maintype">{{ item.maintype|raw }}</span>{% endif %}
+										{% if item.environments %}{{ item.environments|raw }}{% endif %}
+									</div>
+									{% endif %}
+									{% if item.author or item.avatar %}
+										<div class="etl-repogridtab-grid-item-author">
+											{% if item.avatar %}
+											<img{% if item.avatarrounded %} class="avatarrounded"{% endif %}{% if item.avatarheight %} style="max-height:{{ item.avatarheight }}px !important;"{% endif %} src="{{ url(item.avatar)|e }}" alt="{{ item.title }}"/>
+											{% endif %}
+											<span>{{ item.author|raw }}</span>
+										</div>
+									{% endif %}
+									{% if item.websitename %}
+										<div class="etl-repogridtab-grid-item-header"><div class="etl-repogridtab-grid-item-website">
+											<div class="etl-repogridtab-grid-item-prevalue">
+												<span>{{ particle.websitetitle }}</span>
+											</div>
+											<a href="{{ item.websitelink|e }}" target="{{ item.websitetarget|default('_blank')|e }}">{{ item.websitename|e }}</a>
+										</div></div>
+									{% endif %}
+									{% if item.repodescription or item.repolongdescription or item.repochangelog %}
+										<div class="etl-repogridtab-grid-item-description">
+											{% if item.repodescription and item.repolongdescription=='' and item.repochangelog=='' %}
+												{{ item.repodescription|raw }}
+											{% else %}
+												{# accordeon start#}
+												<div class="etl-accordeon-repo">
+													<div class="accordeon">
+														{% if item.repodescription %}
+														<div class="item">
+													   <input type="radio" name="btn" value="one" checked="checked">
+														  <label for="btn" class="entypo-">{{ particle.infoplusdescription1 }}</label>
+														  <article id="content-1"><p>{{ item.repodescription|raw }}</p></article>
+													   </div>
+													   {% endif %}
+													   {% if item.repolongdescription %}
+													   <div class="item">
+													  <input type="radio" name="btn" value="two">
+														  <label for="btn" class="entypo-">{{ particle.infoplusdescription2 }}</label>
+														  <article id="content-2"><p>{{ item.repolongdescription|raw }}</p>
+															{% if item.longlink %}
+																{% if item.longreadmoreclassarrow1 %}
+																	<a href="{{ item.longlink|e }}" target="{{ item.longreadmoretarget|default('_self')|e }}" class="animated-arrow">
+																		<span class="the-arrow -left"><span class="shaft"></span></span><span class="mainarrow"><span class="textarrow">
+																		{% if item.longbuttonicon %}<i class="{{ item.longbuttonicon|e }}"></i>{% endif %}
+																		{{ item.longlabel|e }}
+																		</span><span class="the-arrow -right"><span class="shaft"></span></span></span>
+																	</a>
+																{% else %}
+																<div class="etl-repogridtab-grid-item-link">
+																	<a href="{{ item.longlink|e }}" target="{{ item.longreadmoretarget|default('_self')|e }}" class="{{ item.longreadmoreclass|e }}">
+																		{% if item.longbuttonicon %}<i class="{{ item.longbuttonicon|e }}"></i>{% endif %}
+																		{{ item.longlabel|e }}
+																	</a>
+																</div>
+																{% endif %}
+															{% endif %}
+														  </article>
+													   </div>
+													   {% endif %}
+													   {% if item.repochangelog %}
+													   <div class="item">
+													   <input type="radio" name="btn" value="three">
+														  <label for="btn" class="entypo-">{{ particle.infoplusdescription3 }}</label>
+														  <article id="content-3"><p>{{ item.repochangelog|raw }}</p>
+															{% if item.readlink %}
+																{% if item.readreadmoreclassarrow1 %}
+																	<a href="{{ item.readlink|e }}" target="{{ item.readreadmoretarget|default('_self')|e }}" class="animated-arrow">
+																		<span class="the-arrow -left"><span class="shaft"></span></span><span class="mainarrow"><span class="textarrow">
+																		{% if item.readbuttonicon %}<i class="{{ item.readbuttonicon|e }}"></i>{% endif %}
+																		{{ item.readlabel|e }}
+																		</span><span class="the-arrow -right"><span class="shaft"></span></span></span>
+																	</a>
+																{% else %}
+																<div class="etl-repogridtab-grid-item-link">
+																	<a href="{{ item.readlink|e }}" target="{{ item.readreadmoretarget|default('_self')|e }}" class="{{ item.readreadmoreclass|e }}">
+																		{% if item.readbuttonicon %}<i class="{{ item.readbuttonicon|e }}"></i>{% endif %}
+																		{{ item.readlabel|e }}
+																	</a>
+																</div>
+																{% endif %}
+															{% endif %}
+														  </article>
+													   </div>
+													   {% endif %}
+													</div>
+												</div>
+												{# accordeon end#}
+											{% endif %}
+										</div>
+									{% endif %}
+									{% if item.link %}
+										{% if item.readmoreclassarrow1 %}
+											<a href="{{ item.link|e }}" target="{{ item.readmoretarget|default('_self')|e }}" class="animated-arrow">
+												<span class="the-arrow -left"><span class="shaft"></span></span><span class="mainarrow"><span class="textarrow">
+												{% if item.buttonicon %}<i class="{{ item.buttonicon|e }}"></i>{% endif %}
+												{{ item.label|e }}
+												</span><span class="the-arrow -right"><span class="shaft"></span></span></span>
+											</a>
+										{% else %}
+										<div class="etl-repogridtab-grid-item-link">
+											<a href="{{ item.link|e }}" target="{{ item.readmoretarget|default('_self')|e }}" class="{{ item.readmoreclass|e }}">
+												{% if item.buttonicon %}<i class="{{ item.bticon|e }}"></i>{% endif %}
+												{{ item.label|e }}
+											</a>
+										</div>
+										{% endif %}
+									{% endif %}
+									{% if item.btfile %}
+										{% if item.readmoreclassarrow2 %}
+											<a href="{{ url(item.btfile)|e }}" target="{{ item.bttarget|default('_self')|e }}" class="animated-arrow">
+												<span class="the-arrow -left"><span class="shaft"></span></span><span class="mainarrow"><span class="textarrow">
+												{% if item.buttonicon %}<i class="{{ item.buttonicon|e }}"></i>{% endif %}
+												{{ item.btname|e }}
+												</span><span class="the-arrow -right"><span class="shaft"></span></span></span>
+											</a>
+										{% else %}
+										<div class="etl-repogridtab-grid-item-link">
+											<a href="{{ url(item.btfile)|e }}" target="{{ item.bttarget|default('_self')|e }}" class="{{ item.btclass|e }}">
+												{% if item.bticon %}<i class="{{ item.bticon|e }}"></i>{% endif %}
+												{{ item.btname|e }}
+											</a>
+										</div>
+										{% endif %}
+									{% endif %}
+									{% if item.sdcbtfile %}{# plugin sdc #}
+									{% set sdcdiretory = item.sdcbtfile %}
+										<div class="etl-repogridtab-grid-item-link"><div class="{{ item.sdcbtclass|e }}">
+											(sdc {{ sdcdiretory|split('/', 2)[1] }})
+										</div></div>
+									{% endif %}
+									{% if item.nbrelease == 'nb1but' %}
+										<div class="etl-repogridtab-grid-item-link">
+											<div class="buttongithub{{ case_index }}{{ loop.index }}"></div>
+										</div>
+										{# js loading 1 release double button #}
+										<script type="text/javascript">
+										( function($) {
+										 $(document).ready(function () {
+											var repo = GetParameterByName("repo"); if (!repo) { repo = "{{ item.gtuser }}/{{ item.reponame }}"; }
+											GetReleases(repo);
+										});
+										function GetReleases(repo) {
+											$.getJSON("https://api.github.com/repos/" + repo + "/releases").done(function (json) {
+												var totalDownloadCount = 0; previousUpdatedAt = moment(); for (var i = 0; i < 1; i++) {
+													var release = json[i]; if (release.assets.length === 0) { continue; }
+													var asset = release.assets[0]; var fileSize = Math.round(asset.size / 1024);
+													var downloadCount = 0;
+													for (var i2 = 0; i2 < release.assets.length; i2++) {
+														downloadCount += release.assets[i2].download_count;
+													}
+													totalDownloadCount += downloadCount;
+													console.log(totalDownloadCount);
+													$(".buttongithub{{ case_index }}{{ loop.index }}").append($("<a>" ).attr("href", release.html_url).attr("title", "{{ particle.btgtinfopopup|raw }} {% if case.catcols != "etl-1cols" %}" + release.name + "{% endif %}").addClass("{{ item.btgtleft|e }} double-button-left").html("<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i><span class=\"hiddenmulticol\"> " + release.name +"</span>")).append($("<a>" ).attr("title", "{{ particle.btgtdownloadpopup|raw }} " + asset.name).attr("href", asset.browser_download_url).addClass("{{ item.btgtright|e }} double-button-right").html("<i class=\"fa fa-download\" aria-hidden=\"true\"></i> (" + fileSize.toLocaleString() + " kb) <i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> " + downloadCount.toLocaleString()));
+												}
+											});
+										}
+										function GetParameterByName(name, url) {
+											if (!url) url = window.location.href;
+											name = name.replace(/[\[\]]/g, "\\$&");
+											var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+											var results = regex.exec(url);
+											if (!results) return null;
+											if (!results[2]) return "";
+											return decodeURIComponent(results[2].replace(/\+/g, " "));
+										}
+										} ) ( jQuery );
+										
+										</script>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						{# Item Content Full page#}
+						{% if item.gtuser and item.nbrelease != 'nb1but'%}
+							{# load github datas table + js -  fork - Copyright (c) 2020 by Akash Nimare (https://codepen.io/akashnimare/pen/JvqgaG) #}
+							<div class="etl-repogridtab-grid-item-wrapper">
+								<div class="g-block size-100">
+									{% if item.repotabletitle %}
+									<div class="etl-repotabletitle">{{ item.repotabletitle|raw }}</div>
+									{% endif %}
+									<div class="container-downloads">
+										<div class="container">
+											<div class="divTable table-downloads-
+											
+											{{ case_index }}{{ loop.index }}">
+												<div class="divTableHeading">
+													<div class="divTableRow">
+														<div class="divTableHead1">{{ particle.releasenametitle|raw }}</div>
+														<div class="divTableHead">{{ particle.filesizetitle|raw }}</div>
+														<div class="divTableHead">{{ particle.downloadtitle|raw }}</div>
+														<div class="divTableHead">{{ particle.releasedatetitle|raw }}</div>
+														<div class="divTableHead"{% if item.showactivedays == false %} style="display: none;" {% endif %}>{{ particle.activedaystitle|raw }}</div>
+													</div>
+												</div>
+												<div class="divTableBody"></div>
+											</div>
+										</div>
+										{% if item.showtotaldownload %}
+										<div class="etl-repogridtab-total-downloads" id="total{{ case_index }}{{ loop.index }}"><span class="total-downloads total-downloads{{ case_index }}{{ loop.index }}"></span></div>
+										{% else %}
+										<div style="display:none;" id="total{{ case_index }}{{ loop.index }}"></div>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+							{# js loading all releases#}
+							{% if item.nbrelease == 'nball' %}
+							<script type="text/javascript">
+							( function($) {
+							 $(document).ready(function () {
+								var repo = GetParameterByName("repo"); if (!repo) { repo = "{{ item.gtuser }}/{{ item.reponame }}"; }
+								GetReleases(repo);
+							});
+							function GetReleases(repo) {
+								$.getJSON("https://api.github.com/repos/" + repo + "/releases").done(function (json) {
+									var totalDownloadCount = 0; previousUpdatedAt = moment(); for (var i = 0; i < json.length; i++) {
+										var release = json[i]; if (release.assets.length === 0) { continue; }
+										var asset = release.assets[0]; var fileSize = Math.round(asset.size / 1024);
+										var downloadCount = 0;
+										for (var i2 = 0; i2 < release.assets.length; i2++) {
+											downloadCount += release.assets[i2].download_count;
+										}
+										totalDownloadCount += downloadCount;
+										console.log(totalDownloadCount);
+										document.getElementById("total{{ case_index }}{{ loop.index }}").innerHTML = "{{ particle.totaldownload|raw }} " + totalDownloadCount;
+										var updatedAt = moment(asset.updated_at);
+										var activeDays = previousUpdatedAt.diff(updatedAt, "days", true);
+										previousUpdatedAt = updatedAt;
+										$(".table-downloads-{{ case_index }}{{ loop.index }} .divTableBody").append($("<div class =\"divTableRow\">").append($("<div class =\"divTableCell1\">").append($("<a>").attr("title", "{{ particle.btgtinfopopup|raw }}").attr("href", release.html_url).text(release.name)).append(release.prerelease ? "<div class=\"pull-right\"><span class=\"badge badge-danger\">{{ particle.prerelease }}</span></div>" : "")).append($("<div class =\"divTableCell\">").append($("<a>" ).attr("title", "{{ particle.btgtdownloadpopup|raw }} " + asset.name).attr("href", asset.browser_download_url).html("<div class =\"fa fa-download\"> (" + fileSize.toLocaleString() + " KB)"))).append($("<div class =\"divTableCell\">").text(downloadCount.toLocaleString())).append($("<div class =\"divTableCell\">").text(moment(asset.updated_at).format("{% if particle.dateformats == 'date1' %}YYYY-MM-DD{% endif %}{% if particle.dateformats == 'date2' %}YYYY MM DD{% endif %}{% if particle.dateformats == 'date3' %}DD-MM-YYYY{% endif %}{% if particle.dateformats == 'date4' %}DD MM YYYY{% endif %}"))).append($("<div {% if item.showactivedays == false %}style=\"display: none;\" {% endif %}class =\"divTableCell\">").text(activeDays.toFixed(1))));
+									}
+									if (totalDownloadCount > 0) { $(".total-downloads").text(" (" + totalDownloadCount.toLocaleString() + " downloads)"); }									
+								});
+							}
+							function GetParameterByName(name, url) {
+								if (!url) url = window.location.href;
+								name = name.replace(/[\[\]]/g, "\\$&");
+								var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+								var results = regex.exec(url);
+								if (!results) return null;
+								if (!results[2]) return "";
+								return decodeURIComponent(results[2].replace(/\+/g, " "));
+							}
+							} ) ( jQuery );
+							</script>
+							{% endif %}
+							{# js loading 1 release#}
+							{% if item.nbrelease == 'nb1' %}
+							<script type="text/javascript">
+							( function($) {
+							 $(document).ready(function () {
+								var repo = GetParameterByName("repo"); if (!repo) { repo = "{{ item.gtuser }}/{{ item.reponame }}"; }
+								GetReleases(repo);
+							});
+							function GetReleases(repo) {
+								$.getJSON("https://api.github.com/repos/" + repo + "/releases").done(function (json) {
+									var totalDownloadCount = 0; previousUpdatedAt = moment(); for (var i = 0; i < 1; i++) {
+										var release = json[i]; if (release.assets.length === 0) { continue; }
+										var asset = release.assets[0]; var fileSize = Math.round(asset.size / 1024);
+										var downloadCount = 0;
+										for (var i2 = 0; i2 < release.assets.length; i2++) {
+											downloadCount += release.assets[i2].download_count;
+										}
+										totalDownloadCount += downloadCount;
+										console.log(totalDownloadCount);
+										document.getElementById("total{{ case_index }}{{ loop.index }}").innerHTML = "{{ particle.totaldownload|raw }} " + totalDownloadCount;
+										var updatedAt = moment(asset.updated_at);
+										var activeDays = previousUpdatedAt.diff(updatedAt, "days", true);
+										previousUpdatedAt = updatedAt;
+										$(".table-downloads-{{ case_index }}{{ loop.index }} .divTableBody").append($("<div class =\"divTableRow\">").append($("<div class =\"divTableCell1\">").append($("<a>").attr("title", "{{ particle.btgtinfopopup|raw }}").attr("href", release.html_url).text(release.name)).append(release.prerelease ? "<div class=\"pull-right\"><span class=\"badge badge-danger\">{{ particle.prerelease }}</span></div>" : "")).append($("<div class =\"divTableCell\">").append($("<a>" ).attr("title", "{{ particle.btgtdownloadpopup|raw }} " + asset.name).attr("href", asset.browser_download_url).html("<div class =\"fa fa-download\"> (" + fileSize.toLocaleString() + " KB)"))).append($("<div class =\"divTableCell\">").text(downloadCount.toLocaleString())).append($("<div class =\"divTableCell\">").text(moment(asset.updated_at).format("{% if particle.dateformats == 'date1' %}YYYY-MM-DD{% endif %}{% if particle.dateformats == 'date2' %}YYYY MM DD{% endif %}{% if particle.dateformats == 'date3' %}DD-MM-YYYY{% endif %}{% if particle.dateformats == 'date4' %}DD MM YYYY{% endif %}"))).append($("<div {% if item.showactivedays == false %}style=\"display: none;\" {% endif %}class =\"divTableCell\">").text(activeDays.toFixed(1))));
+									}
+									if (totalDownloadCount > 0) { $(".total-downloads").text(" (" + totalDownloadCount.toLocaleString() + " downloads)"); }									
+								});
+							}
+							function GetParameterByName(name, url) {
+								if (!url) url = window.location.href;
+								name = name.replace(/[\[\]]/g, "\\$&");
+								var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+								var results = regex.exec(url);
+								if (!results) return null;
+								if (!results[2]) return "";
+								return decodeURIComponent(results[2].replace(/\+/g, " "));
+							}
+							} ) ( jQuery );
+							</script>
+							{% endif %}
+						{% endif %}
+						{% if item.bottomdescription %}
+							<div class="etl-repogridtab-grid-item-bottomdescription etl-repogridtab-grid-item-{{ item.formatbottom }}">
+							{{ item.bottomdescription|raw }}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+              </div>
+              {% endfor %}
+{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+        </section>
+{% endif %}{# End check number of categories to remove tab if = 1 #}
+        {% endfor %}
+{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+      </div>
+{% endif %}{# End check number of categories to remove tab if = 1 #}
+      <div class="clearfix"></div>
+{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+  </div>
+{% endif %}{# End check number of categories to remove tab if = 1 #}
+  {% else %}
+      {% include '@particles/etl_repogridtab-' ~ gantry.platform.name ~ '.html.twig' ignore missing %}
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block javascript_footer %}
+{% if not particle.source or particle.source == 'particle' %}
+	{% if case_indexcheck != 1 %}{# check number of categories to remove tab if = 1 #}
+		<script src="{{ url('gantry-theme://js/cbpFWTabs.js') }}"></script>
+		<script type="text/javascript">
+		new CBPFWTabs( document.getElementById( 'tabs' ) );
+	</script>
+	{% endif %}{# End check number of categories to remove tab if = 1 #}
+{% else %}
+	{% if particle.source == 'joomla' %}{# load shuffle js #}
+		<script src="{{ url('//cdn.polyfill.io/v3/polyfill.min.js?features=default,fetch,Array.prototype.includes') }}"></script>
+		<script src="{{ url('gantry-theme://js/imagesloaded.pkgd.js') }}"></script>
+		<script src="{{ url('gantry-theme://js/shuffle.js') }}"></script>
+		<script src="{{ url('gantry-theme://js/repogridtabshuffle.init.js') }}"></script>
+	{% endif %}
+{% endif %}
+{% endblock %}

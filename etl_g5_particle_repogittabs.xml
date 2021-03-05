@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension
+    type="file"
+    client="site"
+    method="upgrade">
+    <name>ETL-Particle-Gantry5-Repo-Grid-Tab</name>
+    <version>1.0</version>
+    <creationDate>24.01.2021</creationDate>
+    <author>Bertrand Pascal - En Toutes Lettres</author>
+    <authorUrl>https://www.en-toutes-lettres.fr/</authorUrl>
+    <authorEmail>webmaster@en-toutes-lettres.fr</authorEmail>
+    <description>
+        <![CDATA[<h3>Particle "Repository Grid Tab" for Gantry 5 v1.0 - Template Hydrogen</h3>
+		<h4>By En Toutes Lettres (https://www.en-toutes-lettres.fr)</h4>
+		<h4>Don't forget to add these 2 lines</h4>
+        <h3><span style="color:#0000FF">@import 'dependencies';</span></h3>
+        <h3><span style="color:#0000FF">@import 'etl_repogridtab'; </span></h3>
+		<h4>in your custom SCSS file, custom.scss (/templates/g5_hydrogen/custom/scss/custom.scss)</h4>
+        <h4>or create this file and add these 2 lines with your text editor (/templates/g5_hydrogen/custom/scss/custom.scss)</h4>]]>
+    </description>
+    <copyright>© 2020 En Toutes Lettres</copyright>
+    <license>MIT</license>
+    <fileset>
+        <files folder="particles" target="templates/g5_hydrogen/custom/particles"><filename>etl_repogridtab.html.twig</filename><filename>etl_repogridtab.yaml</filename></files>
+		<files folder="scss" target="templates/g5_hydrogen/custom/scss"><filename>etl_repogridtab.scss</filename></files>
+		<files folder="js" target="templates/g5_hydrogen/custom/js"><filename>cbpFWTabs.js</filename><filename>imagesloaded.pkgd.js</filename><filename>moment.min.js</filename><filename>shuffle.js</filename><filename>repogridtabshuffle.init.js</filename></files>
+		<files folder="images" target="templates/g5_hydrogen/custom/images"><filename>arrow-down.svg</filename></files>
+    </fileset>
+    <updateservers>
+		<server
+            type="extension"
+            priority="2"
+            name="ETL particle Gantry 5 Repo Github Tabs">
+            https://raw.githubusercontent.com/tramber91/ETL-Particle-Gantry5-Repo-Grid-Tab/master/updates.xml
+        </server>
+	</updateservers>
+</extension>
+	

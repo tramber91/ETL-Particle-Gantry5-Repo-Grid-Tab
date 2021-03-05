@@ -1,0 +1,980 @@
+name: ETL Repo Grid Tab
+description: Tabs and Grids management of Assets/Github repositories by En Toutes Lettres.
+type: particle
+icon: fa-github
+
+form:
+  overrideable: false
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable particles.
+      default: true
+
+    _tabs:
+      type: container.tabs
+      fields:
+        _tab_settings:
+          label: Settings
+          overridable: false
+          fields:
+            etlnoteintro:
+              type: separator.note
+              class: settings-param
+              content: '<div style="color: #5fa0c0"><h4>Tabs and Grids management of Assets/Github repositories Particle</h4></div><div class="float-left"><img src="https://www.en-toutes-lettres.fr/images/etl/etl_gantry5_particles.png" alt="En toutes lettres - gantry particles"></div><div class="settings-param-field">&nbsp;&nbsp;&nbsp;<a href="https://www.demo-gantry5.en-toutes-lettres.fr/en/particles-en/repository-github-tabs-en" target="_blank">Info and demo&nbsp;<i class="fa fa-fw fa-external-link"></i></a></div>'
+
+            class:
+              overridable: false
+              type: input.selectize
+              label: CSS Classes
+              description: CSS class name for the particle.
+
+            source:
+              overridable: false
+              type: select.select
+              label: Content Source
+              description: Choose if the content should be loaded from the platform (Joomla) or particle itself.
+              default: particle
+              options:
+                particle: Particle
+                joomla: Joomla
+
+            title:
+              overridable: false
+              type: input.text
+              label: Main Title
+              description: Customize the main title text.
+              placeholder: Enter title
+ 
+            maindescription:
+              type: textarea.textarea
+              label: Description
+              description: Customize Main description.
+
+            mainimage:
+              type: input.imagepicker
+              label: Main Image
+              description: Select desired main image.
+
+            mainimageloc:
+              type: select.select
+              label: Image Location
+              description: Select the location for the main image.
+              placeholder: 'Select...'
+              default: left
+              options:
+                left: Left
+                right: Right
+
+            gtnotetabs:
+              type: separator.note
+              content: '<strong>Content Source Particle</strong> - Define Tab style - Tab created if more than one category. Possibility to create an introduction Tab (Tab 0) including Main description'
+
+            tabstyle:
+              type: select.select
+              label: Tab style
+              description: Choose the predefined tab style.
+              default: etltabcenterborderspace
+              options:
+                etltabcenterborderspace: Center border space
+                etltableftborderspace: Left border space
+                etltableftbordernospace: Left border no space
+                etltableftnobordernospace: Left no border no space
+
+            tabhome:
+              type: input.checkbox
+              label: Tab 0
+              description: Main info in first tab.
+              default: false
+
+            titletabhome:
+              overridable: false
+              type: input.text
+              label: Tab0 Title
+              description: Customize the title that will appear 1 first tab.
+              placeholder: Enter title
+
+            subtitletabhome:
+              overridable: false
+              type: input.text
+              label: Tab0 SubTitle
+              description: Customize the subtitle that will appear 1 first tab.
+              placeholder: Enter subtitle
+
+            date_format_repo:
+              overridable: false
+              type: select.date
+              label: Date Format
+              default: 'F d, Y'
+              description: Select preferred date format. Leave empty not to display a date.
+              selectize:
+                  allowEmptyOption: true
+              options:
+                  'l, F d, Y': Date1
+                  'l, d F': Date2
+                  'D, d F': Date3
+                  'F d': Date4
+                  'd F': Date5
+                  'd M': Date6
+                  'D, M d, Y': Date7
+                  'D, M d, y': Date8
+                  'l': Date9
+                  'l j F Y': Date10
+                  'j F Y': Date11
+                  'F d, Y': Date12
+
+            gtnotetabsshuffle:
+              type: separator.note
+              content: '<strong>Content Source Joomla!</strong> - options Navigation (Shuffle.js)'
+
+            navtitle:
+              overridable: false
+              type: input.text
+              label: Nav Title
+              description: Customize the Navigation title text.
+              placeholder: Enter title
+
+            uppertitle:
+              overridable: false
+              type: input.text
+              label: Nav Upper Title
+              description: Customize the upper title text that will appear above regular navigation title text.
+              placeholder: Enter uppertitle
+
+            allitems:
+              overridable: false
+              type: input.text
+              label: '"All items" Label'
+              description: Enter all items button label (leave blank to hide).
+              placeholder: 'All items'
+
+            selected:
+              type: select.select
+              label: Selected
+              description: Choose Selected Nav Item
+              default: all
+              options:
+                all: All
+                first: First Item
+
+            date_format:
+              overridable: false
+              type: select.date
+              label: Date Format
+              default: 'F d, Y'
+              description: Select preferred date format. Leave empty not to display a date.
+              selectize:
+                  allowEmptyOption: true
+              options:
+                  'l, F d, Y': Date1
+                  'l, d F': Date2
+                  'D, d F': Date3
+                  'F d': Date4
+                  'd F': Date5
+                  'd M': Date6
+                  'D, M d, Y': Date7
+                  'D, M d, y': Date8
+                  'l': Date9
+                  'l j F Y': Date10
+                  'j F Y': Date11
+                  'F d, Y': Date12
+
+            catcolsjoomla:
+              type: select.selectize
+              label: Grid Column Joomla
+              description: Select the grid column amount for the list items (Joomla articles)
+              default: cols-1
+              options:
+                cols-1: 1 Column
+                cols-2: 2 Columns
+                cols-3: 3 Columns
+
+            jimagecenter:
+              type: input.checkbox
+              label: Center Image Item?
+              description: No by default. Used in multiple colmumns.
+              default: false
+
+            jreadmorelabel:
+              overridable: false
+              type: input.text
+              label: '"Read more" Label'
+              description: Enter Read more button label (leave blank to hide).
+              default: Read more
+
+
+        _tab_textsetting:
+          label: Labels Setting
+          overridable: false
+          fields:
+
+            gtnoteheading:
+              type: separator.note
+              content: '<strong>Source Particle</strong><br />Fix all predifined labels if needed - important for translation.'
+              class: alert alert-info
+            datetitle:
+              overridable: false
+              type: input.text
+              label: Date Title
+              description: Customize the date title text.
+              default: Last update: 
+            versiontitle:
+              overridable: false
+              type: input.text
+              label: Version title
+              description: Customize the version title text.
+              default: Version:
+            websitetitle:
+              overridable: false
+              type: input.text
+              label: Site web title
+              description: Customize the site web title.
+              default: Web site:
+            gtnoteheadingbt:
+              type: separator.note
+              content: 'Define items labels of "Descriptions" info - Navigation in accordeon.'
+            infoplusdescription1:
+              type: input.text
+              label: Description
+              description: Define Label 'Description'
+              default: Description
+            infoplusdescription2:
+              type: input.text
+              label: Long Description
+              description: Define Label 'Long description'
+              default: Read more
+            infoplusdescription3:
+              type: input.text
+              label: Additionnal Info
+              description: Define Label for Additionnal info like 'Changelog'.
+              default: Changelog
+            gtnotetitle:
+              type: separator.note
+              content: 'Github repository table heading labels.<br />HTML can be used like Font Awesome or Utility Classes.'
+            releasenametitle:
+              overridable: false
+              type: input.text
+              label: Release name
+              description: Customize Release name text.
+              default: Release name <i class="fa fa-info-circle" aria-hidden="true"></i>
+            prerelease:
+              overridable: false
+              type: input.text
+              label: Pre-release
+              description: Customize Pre-release label (used as button in table after release description).
+              default: Pre-release
+            filesizetitle:
+              overridable: false
+              type: input.text
+              label: Download (size)
+              description: Customize Download file size text. 
+              default: <span class="hidden-phone">Download&nbsp;</span><i class="fa fa-cloud-download" aria-hidden="true"></i> (size)
+            downloadtitle:
+              overridable: false
+              type: input.text
+              label: Download count
+              description: Customize Download count text.
+              default: <span class="hidden-phone">Download count&nbsp;</span><i class="fa fa-tachometer" aria-hidden="true"></i> 
+            releasedatetitle:
+              overridable: false
+              type: input.text
+              label: Release date
+              description: Customize Release date text.
+              default: <span class="hidden-phone">Release&nbsp;date&nbsp;</span><i class="fa fa-calendar" aria-hidden="true"></i>
+            dateformats:
+              type: select.select
+              label: Date format
+              description: Select preferred date format.
+              default: date1
+              options:
+                date1: YYYY-MM-DD
+                date2: YYYY MM DD
+                date3: DD-MM-YYYY
+                date4: DD MM YYYY
+            activedaystitle:
+              overridable: false
+              type: input.text
+              label: Active days
+              description: Customize Active days text. Active days for the release coming from Github. This column can be removed in setting.
+              default: Active days
+            totaldownload:
+              overridable: false
+              type: input.text
+              label: Total download
+              description: Customize Total download text. This value can be removed in setting.
+              default: Total download:
+            btgtinfopopup:
+              overridable: false
+              type: input.text
+              label: Info tooltip intro
+              description: Customize tooltip introduction of Release information.
+              default: Information release
+            btgtdownloadpopup:
+              overridable: false
+              type: input.text
+              label: Download tooltip intro
+              description: Customize tooltip introduction Release download.
+              default: Download release
+
+        _tab_collection:
+          label: Categories
+          overridable: false
+          fields:
+            gtnotecat:
+              type: separator.note
+              class: alert alert-info
+              content: '<strong>Source Particle</strong><br />Create categories. By category you manage your items (Github repositories or your assets).'
+            cases:
+              type: collection.list
+              array: true
+              label: Category
+              description: Create Category.
+              value: title
+              ajax: true
+              overridable: false
+              fields:
+                _tabscollection2:
+                  type: container.tabs
+                  fields:
+                    _tab_collection2a:
+                      label: Tab/Category info
+                      overridable: false
+                      fields:
+                        .gtnotecategory:
+                           type: separator.note
+                           class: alert alert-info
+                           content: 'Fix Tab and Category description.<br />Items creation (Repositories/Assets).'
+                        .gtnotetabcategory:
+                           type: separator.note
+                           content: 'Tab Setting'
+                        .tabtitle:
+                          type: input.text
+                          label: Tab Title
+                          description: Enter Tab Title
+                        .tabsubtitle:
+                          type: input.text
+                          label: Tab Subtitle
+                          description: Enter Tab Subtitle (& nbsp; can be used if necessary).
+                        .tabremoval:
+                          type: input.checkbox
+                          label: Tabs removal ?
+                          description: Warning to check only if you need it. Could be used when you load a module with a position plugin like Module Anywhere (Single category usage of this particle).
+                          default: false
+                        .gtnotecatcategory:
+                           type: separator.note
+                           content: 'Category Datas'
+                        .catcols:
+                           type: select.selectize
+                           label: Grid Column
+                           description: Select the grid column amount for the list items.
+                           default: etl-1cols
+                           options:
+                             etl-1cols: 1 column
+                             etl-2cols: 2 columns
+                             etl-3cols: 3 columns
+                        .repocattitle:
+                          type: input.text
+                          label: Category Name
+                          description: Customize the category name.
+                          placeholder: Enter your category name
+                        .repocatimage:
+                          type: input.imagepicker
+                          label: Category Image
+                          description: Select desired category image.
+                        .repoimageloc:
+                          type: select.select
+                          label: Image Location
+                          description: Select the location for the category image.
+                          placeholder: 'Select...'
+                          default: left
+                          options:
+                            left: Left
+                            right: Right
+                        .repocatdescription:
+                          type: textarea.textarea
+                          label: Category Description
+                          description: Customize your category description.
+                          placeholder: Enter your description
+
+                    _tab_collection2b:
+                      label: Items creation
+                      overridable: false
+                      fields:
+                        .gtnotebuttonclass:
+                           type: separator.note
+                           content: 'Items creation (Assets/Github Repositories)<br>Additionnal CSS classes for "button" : button-2, button-outline, button-outline-light, button-gradient, button-bevel, button-square, button-block, button-xlarge, button-large, button-small, button-xsmall.'
+                        .items:
+                          type: collection.list
+                          array: true
+                          label: Items
+                          description: Créer vos items (Repository Github, assets)..
+                          value: title
+                          ajax: true
+                          fields:
+                            _tabs2:
+                              type: container.tabs
+                              fields:
+                                _tab_settings2:
+                                  label: Main
+                                  overridable: false
+                                  fields:
+                                        .stdinfo:
+                                          type: separator.note
+                                          class: alert alert-info
+                                          content: '<strong>Main information</strong><br />Go to "Github repo" tab if your file is located on Github or "Int/Ext asset" tab if your file is located internally in your server or External file link.<br />Go to "More info" tab for other external link.'
+                                        .articlerelatedrepo:
+                                          type: input.checkbox
+                                          label: Remove Block Title
+                                          description: If needed. If particle linked to a Joomla article with load module plugin and unique item in the first category, it could be interesant to display items without image and Title which are manageged by Joomla in article.
+                                          default: false
+                                        .repotitle:
+                                          type: input.text
+                                          label: Title
+                                          description: Enter repository/asset title.
+                                        .repotitlecenter:
+                                          type: input.checkbox
+                                          label: Center Title
+                                          description: Define if main title shoud be centered.
+                                          default: false
+                                        .repodescription:
+                                          type: textarea.textarea
+                                          label: Short Description
+                                          description: Enter repository/asset short description.
+                                        .image:
+                                          type: input.imagepicker
+                                          label: Image
+                                          description: Select desired image.
+                                        .repoimagecenter:
+                                          type: input.checkbox
+                                          label: Image Center ?
+                                          description: Possibility to center intem image. Usefull for multicolumn.
+                                          default: false
+                                        .version:
+                                          type: input.text
+                                          label: Version
+                                          description: Enter version number.
+                                          placeholder: v1.0
+                                        .versiontype:
+                                          type: input.text
+                                          label: Version type
+                                          description: Enter version type.
+                                          default: Stable
+                                        .versionlicence:
+                                          type: input.text
+                                          label: Licence
+                                          description: Enter License.
+                                          placeholder: MIT Licence
+                                        .date:
+                                          type: input.date
+                                          label: Version Date
+                                          description: Enter version date.
+                                        .maintype:
+                                          type: input.text
+                                          label: Type
+                                          description: Enter your main type (unique).
+                                          placeholder: Particle or Component or ... 
+                                        .environments:
+                                          type: input.text
+                                          label: Environments
+                                          description: Enter each Environments value arround span tag. See example as default value.
+                                          default: <span>Gantry 5</span><span>Joomla</span>
+                                        .author:
+                                          type: input.text
+                                          label: Author
+                                          description: Enter author name.
+                                        .avatar:
+                                          type: input.imagepicker
+                                          label: Small Picture/Logo
+                                          description: Enter author picture (avatar) or Logo.
+                                        .avatarheight:
+                                          type: input.number
+                                          label: Picture/Logo Height (px)
+                                          description: Max height of author picture (avatar) or Logo (px) - Default max height 25px.
+                                          default: 25
+                                        .avatarrounded:
+                                          type: input.checkbox
+                                          label: Rounded Picture?
+                                          description: Define if Picture/Logo has rounded class.
+                                          default: false
+                                        .websitename:
+                                          type: input.text
+                                          label: Web site name
+                                          description: Personnalisez le nom du site web.
+                                          placeholder: www.mywebsite.com
+                                        .websitelink:
+                                          type: input.text
+                                          label: Web site link
+                                          description: Specify web site link.
+                                          placeholder: https://www.mywebsite.com
+                                        .websitetarget:
+                                          type: select.selectize
+                                          label: Web site target
+                                          description: Target browser window when item is clicked.
+                                          placeholder: 'Select...'
+                                          default: _blank
+                                          options:
+                                              _self: Self
+                                              _blank: New windows
+                                        .infomaindatas:
+                                          type: separator.note
+                                          content: 'Main info view: Center or Not.'
+                                        .datacenter:
+                                          type: input.checkbox
+                                          label: Center Main datas
+                                          description: Define if all main info block shoud be centered.
+                                          default: false
+                                        .datacenteronlyphone:
+                                          type: input.checkbox
+                                          label: Center Main datas - Phone Only
+                                          description: Define if all main info block shoud be centered only for cell phone.
+                                          default: true
+                                _tab_settings3:
+                                   label: More info
+                                   overridable: false
+                                   fields:
+                                        .repochangeloginfo:
+                                          type: separator.note
+                                          content: '<a href="https://www.en-toutes-lettres.fr/en/web-services/joomla-news/72-joomla-tutorial/tutoriels-css/257-tutoriel-css-jouer-avec-les-listes-imbriquees-ex-creer-liste-pour-changelog" target="_blank"><i class="fa fa-external-link"></i> See article for Changelog usage</a> - CSS are included in the particle'
+                                        .repolongdescription:
+                                          type: textarea.textarea
+                                          label: Long description
+                                          description: Enter item long description. Not too long - max height 1000 px for accordeon.
+                                        .longinfoinfolink:
+                                          type: separator.note
+                                          content: 'Long description Read More Button if necessary (External link).'
+                                        .longlabel:
+                                          type: input.text
+                                          label: Label
+                                          description: Customize the long description read more label
+                                          placeholder: Web site
+                                        .longlink:
+                                          type: input.text
+                                          label: Link
+                                          description: Specify the link address.
+                                        .longbuttonicon:
+                                          type: input.icon
+                                          label: Button Icon
+                                          description: Specify the read more icon.
+                                          default: fa fa-external-link
+                                        .longreadmoreclass:
+                                          type: input.selectize
+                                          label: Read More Class
+                                          default: button
+                                          description: CSS class name for the read more. Additionnal class for 'button' possible. Not needed if Special arrow button checked.
+                                        .longreadmoreclassarrow1:
+                                          type: input.checkbox
+                                          label: Special arrow button
+                                          description: Check for special arrow button style.
+                                          default: false
+                                        .longreadmoretarget:
+                                          type: select.selectize
+                                          label: Target
+                                          description: Target browser window when item is clicked.
+                                          placeholder: 'Select...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: New Window
+                                        .readinfoinfoinfo:
+                                          type: separator.note
+                                          content: 'Additionnal Informations (like Changelog)'
+                                        .repochangelog:
+                                          type: textarea.textarea
+                                          label: Additionnal info label
+                                          description: Enter Additionnal Informations or Changelog (special custom CSS for Changelog available). Not too long - max height 1000px for accordeon.
+                                        .readinfoinfolink:
+                                          type: separator.note
+                                          content: 'Additionnal Informations Specific Read More Button if necessary (External link).'
+                                        .readlabel:
+                                          type: input.text
+                                          label: Label
+                                          description: Customize the read more label
+                                          placeholder: Read more
+                                        .readlink:
+                                          type: input.text
+                                          label: Link
+                                          description: Specify the link address.
+                                        .readbuttonicon:
+                                          type: input.icon
+                                          label: Button Icon
+                                          description: Specify the read more icon.
+                                          default: fa fa-external-link
+                                        .readreadmoreclass:
+                                          type: input.selectize
+                                          label: Read More Class
+                                          default: button
+                                          description: CSS class name for the read more. Additionnal class for 'button' possible. Not needed if Special arrow button checked.
+                                        .readreadmoreclassarrow1:
+                                          type: input.checkbox
+                                          label: Special arrow button
+                                          description: Check for special arrow button style.
+                                          default: false
+                                        .readreadmoretarget:
+                                          type: select.selectize
+                                          label: Target
+                                          description: Target browser window when item is clicked.
+                                          placeholder: 'Select...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: New Window
+                                        .infoinfolink:
+                                          type: separator.note
+                                          content: 'End Main Info Block (Out of accordeon) - Read More Button if necessary (External link).'
+                                        .label:
+                                          type: input.text
+                                          label: Label
+                                          description: Customize the read more label
+                                          placeholder: Read more
+                                        .link:
+                                          type: input.text
+                                          label: Link
+                                          description: Specify the link address.
+                                        .buttonicon:
+                                          type: input.icon
+                                          label: Button Icon
+                                          description: Specify the read more icon.
+                                          default: fa fa-external-link
+                                        .readmoreclass:
+                                          type: input.selectize
+                                          label: Read More Class
+                                          default: button
+                                          description: CSS class name for the read more. Additionnal class for 'button' possible. Not needed if Special arrow button checked.
+                                        .readmoreclassarrow1:
+                                          type: input.checkbox
+                                          label: Special arrow button
+                                          description: Check for special arrow button style.
+                                          default: false
+                                        .readmoretarget:
+                                          type: select.selectize
+                                          label: Target
+                                          description: Target browser window when item is clicked.
+                                          placeholder: 'Select...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: New Window
+                                        .infoinfobottom:
+                                          type: separator.note
+                                          content: 'Bottom Description, Full page.'
+                                        .bottomdescription:
+                                          type: textarea.textarea
+                                          label: Bottom Description
+                                          description: Enter bottom description (full page).
+                                        .formatbottom:
+                                          type: select.selectize
+                                          label: Format Bottom
+                                          description: Select how do you want to display bottom description (Default, Center or Smaller font size).
+                                          placeholder: 'Select...'
+                                          default: bottomdefault
+                                          options:
+                                              bottomdefault: Default
+                                              bottomsmall: Small
+                                              bottomdefaultcenter: Default center
+                                              bottomsmallcenter: Small center
+
+                                _tab_settings4:
+                                   label: Github repo
+                                   overridable: false
+                                   fields:
+                                        .gtinfo:
+                                          type: separator.note
+                                          content: '<i class="fa fa-github" aria-hidden="true"></i> Github repository info.'
+                                        .gtuser:
+                                          type: input.text
+                                          label: Github Author
+                                          description: Enter Github author (profil).
+                                        .reponame:
+                                          type: input.text
+                                          label: Repository Name
+                                          description: Enter repository name (only public repository).
+                                        .gtinfodisplay:
+                                          type: separator.note
+                                          content: '<i class="fa fa-github" aria-hidden="true"></i> Github repository options.'
+                                        .repotabletitle:
+                                          type: input.text
+                                          label: Table heading Github
+                                          description: Enter heading of your repository table (if necessary).
+                                          default: <strong>Github datas</strong>: informations and download.
+                                        .nbrelease:
+                                          type: select.select
+                                          label: Number of Release
+                                          description: Number of release to display: Latest or all as table, latest as double button. All releases are defined by Github (limit).
+                                          placeholder: 'Select...'
+                                          default: nball
+                                          options:
+                                              nball: all releases (table)
+                                              nb1: latest release (table)
+                                              nb1but: latest release (double button)
+                                        .btgtleft:
+                                          type: input.selectize
+                                          label: Double button left CSS Class
+                                          default: button button-outline-light
+                                          description: Latest release (double button): CSS class name for the left button. Additionnal class for 'button' possible.
+                                        .btgtright:
+                                          type: input.selectize
+                                          label: Double button right CSS Class
+                                          default: button
+                                          description: Latest release (double button): CSS class name for the right button. Additionnal class for 'button' possible.
+                                        .showactivedays:
+                                          type: input.checkbox
+                                          label: Show Active days
+                                          description: Show Active days on table.
+                                          default: true
+                                        .showtotaldownload:
+                                          type: input.checkbox
+                                          label: Show Total Download
+                                          description: Show total download below table (sum of all releases).
+                                          default: true
+                                _tab_settings5:
+                                   label: Int/Ext asset
+                                   overridable: false
+                                   fields:
+                                        .internalrepoinfo:
+                                          type: separator.note
+                                          content: 'Internal or External asset management.<br>Allowed format: zip, pdf, tar, targz.<br>Please, for internal asset, used a safe directory for your file you have previously created.'
+                                        .btname:
+                                          type: input.text
+                                          label: Button Name
+                                          description: Enter button name.
+                                          placeholder: Enter button name
+                                        .bticon:
+                                          type: input.icon
+                                          label: Button Icon
+                                          description: Specify the link icon if needed.
+                                        .btfile:
+                                          type: input.filepicker
+                                          label: Asset
+                                          description: Load asset to display (zip|pdf|tar|targz). Paste your link in case of external link.
+                                          icon: fa-file-code-o
+                                          placeholder: 'http://../yourfile'
+                                          filter: '\.(zip|pdf|tar|targz)$'
+                                        .bttarget:
+                                          type: select.selectize
+                                          label: Target
+                                          description: Target browser window when item is clicked.
+                                          placeholder: 'Select...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: New Window
+                                        .btclass:
+                                          overridable: false
+                                          type: input.selectize
+                                          label: Button Classes
+                                          description: Button CSS class name. Additionnal class for 'button' possible. Not needed if Special arrow button checked.
+                                          default: button
+                                        .readmoreclassarrow2:
+                                          type: input.checkbox
+                                          label: Special arrow button
+                                          description: Check for special arrow button style.
+                                          default: false
+                                        .sdcinf:
+                                          type: separator.note
+                                          content: 'Simple Download Counter plugin - Select your file.<br>Options (if particle load in article), usage of plugin <a href="https://yagnenok.com/en/joomla-3/simple-download-counter/211-simple-download-counter-version-1-4-released.html" target="_blank">Simple Download Counter</a>. Your folder with files should be named <strong>"etl_download"</strong> and located on server root. Do not forget to modify the plugin setting concerning the folder name. Do not use spaces in file names!'
+                                        .sdcbtfile:
+                                          type: input.filepicker
+                                          label: SDC file
+                                          description: Load file to display (zip|pdf|tar|targz).
+                                          icon: fa-file-code-o
+                                          placeholder: 'Select your file'
+                                          filter: '\.(zip|pdf|tar|targz)$'
+                                          root: etl_download
+                                        .sdcbtclass:
+                                          type: input.selectize
+                                          label: link Class
+                                          default: button button-outline-light
+                                          description: CSS class name for the download link. Additionnal class for 'button' possible. 
+        _tab_articles:
+          label: Articles
+          overridable: false
+          fields:
+            gtnotecatj1:
+              type: separator.note
+              class: alert alert-info
+              content: '<strong>Source Joomla</strong> - selection.'
+
+            article.filter.categories:
+              overridable: false
+              type: joomla.categories
+              label: Categories
+              description: Select the categories the articles should be taken from.
+
+            article.filter.articles:
+              overridable: false
+              type: input.text
+              label: Articles
+              description: Enter the Joomla articles that should be shown. It should be a list of article IDs separated with a comma (i.e. 1,2,3,4,5).
+
+            article.filter.featured:
+              overridable: false
+              type: select.select
+              label: Featured Articles
+              description: Select how Featured articles should be filtered.
+              default: ''
+              options:
+                include: Include Featured
+                exclude: Exclude Featured
+                only: Only Featured
+
+            article.limit.total:
+              overridable: false
+              type: input.text
+              label: Number of Articles
+              description: Enter the maximum number of articles to display.
+              default: 5
+              pattern: '\d{1,2}'
+
+            article.limit.start:
+              overridable: false
+              type: input.text
+              label: Start From
+              description: Enter offset specifying the first article to return. The default is '0' (the first article).
+              default: 0
+              pattern: '\d{1,2}'
+
+            article.sort.orderby:
+              overridable: false
+              type: select.select
+              label: Order By
+              description: Select how the articles should be ordered by.
+              default: publish_up
+              options:
+                publish_up: Published Date
+                created: Created Date
+                modified: Last Modified Date
+                title: Title
+                ordering: Ordering
+                hits: Hits
+                id: ID
+                alias: Alias
+
+            article.sort.ordering:
+              overridable: false
+              type: select.select
+              label: Ordering Direction
+              description: Select the direction the articles should be ordered by.
+              default: ASC
+              options:
+                ASC: Ascending
+                DESC: Descending
+
+        _tab_display:
+          label: Articles Display
+          overridable: false
+          fields:
+            gtnotecatj2:
+              type: separator.note
+              class: alert alert-info
+              content: '<strong>Source Joomla</strong> - Display options.'
+
+            article.display.image.enabled:
+              overridable: false
+              type: select.select
+              label: Image
+              description: Select if and what image of the article should be shown.
+              options:
+                intro: Intro
+                full: Full
+                '': None
+
+            article.display.text.type:
+              overridable: false
+              type: select.select
+              label: Article Text
+              description: Select if and how the article text should be shown.
+              options:
+                intro: Introduction
+                full: Full Article
+                '': Hide
+
+            article.display.text.limit:
+              overridable: false
+              type: input.text
+              label: Text Limit
+              description: Type in the number of characters the article text should be limited to.
+              pattern: '\d+'
+
+            article.display.text.formatting:
+              overridable: false
+              type: select.select
+              label: Text Formatting
+              description: Select the formatting you want to use to display the article text.
+              options:
+                text: Plain Text
+                html: HTML
+
+            article.display.category.enabled:
+              overridable: false
+              type: select.select
+              label: Category
+              description: Select if the category title should be shown.
+              options:
+                show: Show
+                '': Hide
+
+            article.display.title.enabled:
+              overridable: false
+              type: select.select
+              label: Title
+              description: Select if the article title should be shown.
+              options:
+                show: Show
+                '': Hide
+
+            article.display.title.limit:
+              overridable: false
+              type: input.text
+              label: Title Limit
+              description: Enter the maximum number of characters the article title should be limited to.
+              pattern: '\d+(\.\d+){0,1}'
+
+            article.display.date.enabled:
+              overridable: false
+              type: select.select
+              label: Date
+              description: Select if the article date should be shown.
+              options:
+                created: Show Created Date
+                published: Show Published Date
+                modified: Show Modified Date
+                '': Hide
+
+            article.display.read_more.enabled:
+              overridable: false
+              type: select.select
+              label: Link
+              description: Select if Link should be enabled.
+              options:
+                show: Show
+                '': Hide
+
+            article.display.read_more.target:
+              overridable: false
+              type: select.selectize
+              label: Target
+              description: Target browser window when item is clicked.
+              placeholder: 'Select...'
+              default: _self
+              options:
+                  _self: Self
+                  _blank: New Window
+
+            article.display.read_more.layout:
+              overridable: false
+              type: select.selectize
+              label: Layout
+              description: How do you want to display your read more text.
+              placeholder: 'Select...'
+              default: _block
+              options:
+                  _block: Block
+                  _button: Button
+                  _texte: Texte
+
+            .article.display.read_more.btclass:
+              type: input.selectize
+              label: Read More Class
+              default: button
+              description: CSS class name for the read more. Additionnal class for 'button' possible.

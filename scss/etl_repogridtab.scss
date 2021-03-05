@@ -1,0 +1,1304 @@
+$content-section-padding: $content-padding / 3;
+.etl-tabs {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	margin: 1em 0 2em;
+	font-weight: 300;
+	
+ @include breakpoint(mobile-only) {
+	margin: $content-padding;
+	text-align:center;
+ }
+	
+	/* Nav */
+	nav {
+		text-align: center;
+	}
+	nav ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: inline-block;
+		@media only all and (max-width: 48rem) {
+			width: 60%;
+			text-align: center;
+			//display: block;
+		}
+	}
+	nav ul li {
+		border: 1px solid $accent-color-1;
+		border-bottom: none;
+		margin: 0 0.25em;
+		display: block;
+		float: left;
+		position: relative;
+		border-radius: $core-border-radius $core-border-radius 0 0;
+		@media only all and (max-width: 48rem) {
+		    border: 1px solid $accent-color-1;
+			width: 100%;
+			float: none;
+			border-radius: 0;
+			text-align: center;
+			display: inline-block;
+		}
+	}
+	nav li.tab-current {
+		border: none;
+		z-index: 100;
+		.etl-tabs-wrapper-head {
+			background: $accent-color-1;
+			border-radius: $core-border-radius $core-border-radius 0 0;
+			@include breakpoint(mobile-only) {
+			border-radius: 0;
+			}
+	  }
+	  .etl-tabs-wrapper-head-subtitle,
+	  .etl-tabs-wrapper-head-title {
+		color: $white;
+	  }
+	}
+	nav li.tab-current:before,
+	nav li.tab-current:after {
+		content: '';
+		position: absolute;
+		height: 1px;
+		right: 100%;
+		bottom: 0;
+		width: 1000px;
+		background: $accent-color-1;
+		@media only all and (max-width: 48rem) {
+		background: none;
+		margin-bottom:-1px;
+		}
+	}
+
+
+
+	nav li.tab-current:after {
+		right: auto;
+		left: 100%;
+		width: 4000px;
+	}
+
+	nav a {
+		white-space: nowrap;
+	}
+
+	nav a:hover {
+		color: darken($accent-color-1, 20%);
+	}
+
+	nav li.tab-current a {
+		color: $accent-color-1;
+		border-radius: $core-border-radius $core-border-radius 0 0;
+		@include breakpoint(mobile-only) {
+		border-radius: 0;}
+	}
+	
+	/* Content */
+	.content section {
+		padding: $content-section-padding 0;
+		display: none;
+		max-width: 1230px;
+		//margin: 0 auto;
+		@include breakpoint(mobile-only) {
+		padding: $content-padding 0;}
+	}
+	.content section:before,
+	.content section:after {
+		content: '';
+		display: table;
+	}
+	.content section:after {
+		clear: both;
+	}
+	.no-js .content section {
+		display: block;
+		padding-bottom: 2em;
+		border-bottom: 1px solid $accent-color-1;
+	}
+
+	.content section.content-current {
+		display: block;
+		 @include display(flex);
+    @include flex-flow(row wrap);
+    @include flex-wrap(wrap);
+	}
+	.etl-tabs-wrapper-head {
+    display: block;
+    cursor: pointer;
+    padding: ($content-padding / 3) $content-padding;
+	background: fadeout($accent-color-1, 85%);
+	}
+	.etl-tabs-wrapper-head-subtitle,
+	.etl-tabs-wrapper-head-title {
+	display: block;
+    outline: none;
+	}
+  .etl-tabs-wrapper-head-title {
+    font-size: $core-font-size - 0.2;
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+	}
+  .etl-tabs-wrapper-head-subtitle {
+    font-size: $core-font-size - 0.25;
+	}
+  .etl-tabs-wrapper-head-subtitle{
+    &.etl-tabs-wrapper-head-subtitle-empty {
+    line-height: 0.1;
+	}
+	}
+	&.etltableftborderspace {
+		nav {
+			text-align: inherit;
+		}
+		nav ul li {
+			margin: 0 0.50em 0 0;
+		}	
+	}
+	&.etltableftbordernospace {
+		nav {
+			text-align: inherit;
+		}
+		nav ul li {
+			margin: 0;
+			border-left: 0.55px solid $accent-color-1;
+		}	
+	}
+	&.etltableftnobordernospace {
+		nav {
+			text-align: inherit;
+		}
+		nav ul li {
+			margin: 0;
+			border:none;
+		}	
+	}
+}
+
+//Shuffle menu
+$font-weight-semibold:500;
+$font-weight-regular:400;
+$font-weight-bold:700;
+    // Header
+    .etl-repogridtab-header {
+        position: relative;
+        @include display(flex);
+        @include align-items(center);
+        margin-bottom: $content-padding;
+
+        @include breakpoint(mobile-only) {
+            margin: 0;
+        }
+
+        @include breakpoint(mobile-only) {
+            display: block;
+        }
+
+        // Title
+        .etl-repogridtab-title {
+            display: block;
+            @include responsive-font($responsive-font-size + .5, $core-font-size, false, false);
+            padding-right: $content-padding;
+            font-family: get-font-family($font-family-title);
+            font-weight: $font-weight-bold;
+
+            @include breakpoint(mobile-only) {
+                text-align: center;
+                padding-right: 0;
+            }
+
+            .dir-rtl & {
+                padding-left: $content-padding;
+                padding-right: 0;
+            }
+        }
+
+        // Navigation
+        .etl-repogridtab-nav {
+            position: relative;
+            @include flex(1 0 auto);
+            @include align-self(center);
+
+            i {
+                display: none;
+                position: absolute;
+                top: .8rem;
+                left: $content-margin;
+
+                @include breakpoint(mobile-only) {
+                    display: block;
+                }
+            }
+
+            // Mobile menu
+            @include breakpoint(mobile-only) {
+                min-height: 6rem;
+                width: 100%;
+            }
+
+            .etl-repogridtab-nav-container {
+                @include display(flex);
+                @include justify-content(flex-start); // Mobile menu
+
+                @include breakpoint(mobile-only) {
+                    @include flex-direction(column);
+                    width: 75%;
+                    padding: 0 0;
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    margin: 0 auto;
+                    border: solid 2px $black;
+                    border-radius: 5px;
+                    background: $white;
+                    z-index: 15;
+                    margin-top: 1rem;
+                }
+            }
+
+            // Item
+            .etl-repogridtab-nav-item {
+                padding: $content-margin - .5 $content-padding - .6;
+                @include responsive-font($responsive-font-size - 0.2, $core-font-size, false, false);
+                font-weight: $font-weight-regular;
+                position: relative;
+                border-radius: 12px;
+                text-transform: capitalize;
+                cursor: pointer;
+
+                &.selected {
+                    background: $accent-color-1;
+                    font-weight: $font-weight-semibold;
+                    color: $white;
+
+                    @include breakpoint(mobile-only) {
+                        background: none;
+                        border-color: transparent;
+                        color: $black;
+                        display: block;
+                    }
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                &:first {
+                    padding-left: 0;
+                }
+
+                @include breakpoint(mobile-only) {
+                    display: none;
+                    padding: $content-margin - 0.2 $content-padding + 0.5;
+                }
+
+                &.clicked {
+                    display: block;
+                }
+            }
+        }
+    }
+
+
+
+// Particle start
+
+// Define responsive font size if needed
+$responsive-font-size: 1vw !default;
+
+// Category
+.etl-repogridtab-category {
+        @include display(flex);
+        @include flex-flow(row wrap);
+        @include flex-wrap(wrap);
+		width: 100%;
+	.etl-repogridtab-category-item {
+    @include flex(1 1 auto);
+    width: 100%;
+    float: left;
+    margin: 0 0 0.5rem 0;
+    padding: 0 0 0.5rem 0;
+    &.etl-repogridtab-category-item-with-img {
+      @include display(flex);
+      @include flex-flow(row nowrap);
+      @include breakpoint(mobile-only) {
+        @include flex-flow(row wrap);
+      }
+    }
+  }
+		.etl-repogridtab-catimage {
+		margin-right: 1rem;
+		margin-top: 0.25rem;
+
+		&.left {
+			margin-right: 1rem;
+
+			.dir-rtl & {
+				margin-left: 1rem;
+				margin-right: 0;
+			}
+		}
+		&.right {
+			margin-left: 1rem;
+
+			.dir-rtl & {
+				margin-right: 1rem;
+				margin-left: 0;
+			}
+		}
+	}
+	
+	.etl-repogridtab-category-item-text {
+    @include breakpoint(mobile-only) {
+      padding-top: 1rem;
+    }
+  }
+	.etl-repogridtab-cattitle {
+    margin: 0 0 0.25rem 0;
+    font-weight: 400;;
+    line-height: 1.25;
+		@include responsive-font($responsive-font-size + 0.5, $core-font-size + 0.5, false, false);
+	}
+
+	.etl-repogridtab-catdescription {
+		margin: 0 0 0.5rem 0;
+		@include responsive-font($responsive-font-size + 0.1, $core-font-size + 0.1, false, false);
+	}
+}		
+
+
+.etl-repogridtab-maindescription {
+	margin: 0 0 $content-padding + 1 0;
+	@include responsive-font($responsive-font-size + 0.15, $core-font-size + 0.15, false, false);
+	opacity: 0.9;
+    @include breakpoint(mobile-only) {
+      padding-top: 1rem;
+    }
+}
+
+// Upper Title
+.etl-repogridtab-uppertitle {
+	display: block;
+	padding-right: $content-padding;
+	@include responsive-font($responsive-font-size + .5, $core-font-size, false, false);
+	font-weight: $font-weight-regular;
+
+	@include breakpoint(mobile-only) {
+		text-align: center;
+		padding-right: 0;
+	}
+
+	.dir-rtl & {
+		padding-left: $content-padding;
+		padding-right: 0;
+	}
+}
+
+// Grid Settings
+
+
+.etl-contenttabs-repo {
+	    @include display(flex);
+    @include flex-flow(row wrap);
+    @include flex-wrap(wrap);
+    //vertical-align: middle;
+    width: 100%;
+    margin-top: $content-padding + $content-margin;
+	
+		@include breakpoint(mobile-only) {
+		.etl-repogridtab-grid .etl-repogridtab-grid-item .etl-repogridtab-grid-item-content .etl-repogridtab-grid-item-header div.etl-repogridtab-grid-item-date {
+		margin-left: 0;
+		width: 100%;
+		}
+		.etl-repogridtab-grid .etl-repogridtab-grid-item .etl-repogridtab-grid-item-content {
+		padding: 0;
+
+		}
+		// Grid sizing
+          .etl-repogridtab-grid-sizer {
+            //width: 100%;
+        }
+	}
+	&.etl-1cols {
+		&:last-child {
+			border-bottom: none;
+		}
+		@include breakpoint(mobile-only) {
+			.etl-repogridtab-grid .etl-repogridtab-grid-item .etl-repogridtab-grid-item-content .etl-repogridtab-grid-item-header div.etl-repogridtab-grid-item-date {
+			margin-left: 0;
+			width: 100%;
+			}
+			.etl-repogridtab-grid .etl-repogridtab-grid-item .etl-repogridtab-grid-item-content {
+			padding: 0;
+			}
+		}
+	}
+	&.etl-2cols {
+		width: 47%;
+		display:inline-block;
+		.etl-repogridtab-grid .etl-repogridtab-grid-item .etl-repogridtab-grid-item-content .etl-repogridtab-grid-item-header div.etl-repogridtab-grid-item-date {
+		margin-left: 0;
+		width: 100%;
+			.dir-rtl & {
+				margin-right: 0;
+				width: 100%;
+			}
+		}
+		// Grid sizing
+          .etl-repogridtab-grid {
+            overflow: inherit;
+        }
+
+		&:nth-child(odd) {
+			margin-right: 1%;
+			}
+		&:nth-child(even) {
+			margin-left: 1%;
+		}
+		@include breakpoint(mobile-only) {
+		width: 100%;
+		}
+	}
+	&.etl-3cols {
+		width: 32%;
+		display:inline-block;
+		.etl-repogridtab-grid .etl-repogridtab-grid-item .etl-repogridtab-grid-item-content .etl-repogridtab-grid-item-header div.etl-repogridtab-grid-item-date {
+		margin-left: 0;
+		width: 100%;
+			.dir-rtl & {
+				margin-right: 0;
+				width: 100%;
+			}
+		}
+		// Grid sizing
+          .etl-repogridtab-grid {
+            overflow: inherit;
+        }
+		&:nth-child(3n-1) {
+			margin-left: 0;
+			margin-right: 0;
+		}
+		@include breakpoint(mobile-only) {
+		width: 100%;
+		}
+		@include breakpoint(tablet-only) {
+		width: 100%;
+		}
+		.etl-repogridtab-grid-item-version {
+		width: 100%;
+		}
+	}
+	
+		&.etl-imagefull-bloc {
+		vertical-align: top;
+		.etl-repogridtab-grid-item-wrapper {
+			display:block !important;
+			width: 100% !important;
+			.etl-repogridtab-grid-item-image {
+			width: 100% !important ;
+			padding: 0 $content-padding $content-padding / 2 $content-padding !important;
+			}
+		}
+	}
+}
+.etl-2cols span.hiddenmulticol, .etl-3cols span.hiddenmulticol {display:none;}
+
+
+
+// Grid sizing - Items
+.etl-repogridtab-grid {
+	//position: relative;
+	margin: 0 -($content-padding);
+	overflow: auto;
+    width: 100%;
+	@include breakpoint(mobile-only) {
+		margin: 0 -$content-padding;
+	}
+
+	.etl-repogridtab-item, .etl-repogridtab-grid-item {
+		width: 100%;
+	}
+	.etl-repogridtab-grid-item {
+		.etl-repogridtab-grid-item-titlerepo {
+			//font-family: get-font-family($font-family-title);
+			font-weight: $font-weight-bold;
+			@include responsive-font($responsive-font-size + 0.4, $core-font-size + 0.1, false, false);
+			margin: $content-padding;;
+			border-bottom:1px solid $accent-color-1;
+			//line-height: $core-line-height - 0.2;
+			&.etl-repogridtab-grid-item-titlerepo-center {
+				border-bottom:0px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				
+				&:before, &:after {
+				content: '';
+				display: block;
+				height: 1px;
+				width: 100%;
+				background: $accent-color-1;
+				}
+				span {
+				  width: 100%;
+				  display: inline-block;
+				  white-space: nowrap;
+				  padding: 0 10px;
+				  flex: 1 1 0%;
+				}
+			}
+		}
+		.etl-repogridtab-grid-item-bottomdescription {
+			font-weight: 400;
+			@include responsive-font($responsive-font-size - 0.1, $core-font-size - 0.1, false, false);
+			margin: $content-padding;
+			opacity: 0.8;
+			margin-top: ($content-margin - 0.5);
+			&.etl-repogridtab-grid-item-bottomsmall {
+				@include responsive-font($responsive-font-size - 0.2, $core-font-size - 0.2, false, false);
+			}
+			&.etl-repogridtab-grid-item-bottomdefaultcenter {
+				text-align: center;
+			}
+			&.etl-repogridtab-grid-item-bottomsmallcenter {
+				@include responsive-font($responsive-font-size - 0.2, $core-font-size - 0.2, false, false);
+				text-align: center;
+			}
+		}
+		.etl-repogridtab-total-downloads {
+			font-weight: 600;
+			opacity: 0.7;
+			@include responsive-font($responsive-font-size + 0.1, $core-font-size + 0.1, false, false);
+			margin: 0.5rem 0 0 0;
+			padding-left: 10px;
+		}
+		.etl-repogridtab-grid-item-wrapper {
+			position: relative;
+			@include display(flex);
+			margin: $content-padding;
+			margin-bottom: $content-margin - 0.5;
+			@include transition(all 0.25s);
+			@include breakpoint(mobile-only) {
+				margin: $content-padding;
+				margin-bottom: $content-margin - 0.5;
+				@include flex-direction(column);
+			}
+			.etl-repogridtab-grid-item-image {
+				position: relative;
+				width: 28%;
+
+				@include breakpoint(mobile-only) {
+					width: 100%;
+				}
+				img {
+					width: 100%;
+					min-height: 1px;
+					@include transition(all 0.25s);
+				}
+			}
+		}
+		.etl-repogridtab-grid-item-content {
+			width: 100%;
+			left: 0;
+			text-align: left;
+			z-index: 3;
+			padding: 0 $content-padding $content-padding / 2 $content-padding;
+			//padding-top:0;
+			@include responsive-font($responsive-font-size + 0.2, $core-font-size, false, false);
+			@include transition(color 0.5s);
+			@include breakpoint(mobile-only) {
+				margin: $content-padding;
+                }
+			&.etl-repogridtab-grid-item-content-no-image {padding-left:0;}
+			.dir-rtl & {
+				text-align: right;
+				&.etl-repogridtab-grid-item-content-no-image {padding-right:0;}
+			}
+			.etl-repogridtab-grid-item-content-data {
+				&.center-only-phone {
+					
+				.etl-repogridtab-grid-item-description {
+				text-align:left;
+				.dir-rtl & {
+				text-align: right;
+			}
+			}
+					
+					
+				@include breakpoint(mobile-only) {
+					margin: $content-padding;
+					text-align:center;
+					}
+				}
+			}
+			.etl-repogridtab-grid-item-environments span {
+				@include responsive-font($responsive-font-size - 0.1, $core-font-size - 0.1, false, false);
+				margin-top: $content-margin - 0.3;
+				margin-right: 12px;
+				background: $accent-color-1;
+				color: #fff;
+				border-radius: .25rem;
+				display: inline-block;
+				padding: 0px 10px;
+				
+				&.etl-repogridtab-grid-item-maintype {background: $accent-color-2;}
+			}
+			// Item Header version Date
+			.etl-repogridtab-grid-item-header {
+				font-weight: $font-weight-regular;
+				font-size: $core-font-size - 0.2;
+				div {
+					display: inline-block;
+					opacity: 0.7;
+					&.etl-repogridtab-grid-item-date {margin-left: 2 * $content-margin;}
+					&.etl-repogridtab-grid-item-version {margin-left: 0;}
+					&.etl-repogridtab-grid-item-prevalue {
+						color: darken($accent-color-1, 60%);
+						opacity: 1;
+						font-weight: 600;
+						margin-right: $content-margin / 3;
+						.dir-rtl & {
+							margin-right: 0;
+							margin-left: $content-margin / 3;
+						}
+					}
+				}
+				
+				.etl-repogridtab-grid-item-versiontype {
+					margin-left: 4px;
+					background: $accent-color-1;
+					color: #fff;
+					border-radius: .25rem;
+					display: inline-block;
+					padding: 0px 10px;
+				}
+				.etl-repogridtab-grid-item-versionlicence {
+					margin-left: 4px;
+					font-weight: 600;
+				}
+			}
+			// Item author
+			.etl-repogridtab-grid-item-author {
+				margin-top: $content-margin;
+				font-size: $core-font-size - 0.2;
+				color: transparentize($base-text-color, 40%);
+				vertical-align:bottom;
+				img {
+					max-height: 25px;
+					//border-radius: 100%;
+					width:auto;
+					vertical-align:bottom;
+					margin-right: $content-margin;
+					margin-bottom:0.23rem;
+				   &.avatarrounded {
+						border-radius: 50%;
+					}
+					.dir-rtl & {
+						margin-right: 0;
+						margin-left: $content-margin;
+					}
+				}
+				@include breakpoint(mobile-only) {
+					span {display:block; margin-top:5px;}
+				}
+			}
+			.etl-repogridtab-grid-item-case {
+				color: $black;
+				@include responsive-font($responsive-font-size - 0.4, $core-font-size - 0.2, false, false);
+				font-weight: $font-weight-regular;
+				background: transparent;
+				display: inline-block;
+				letter-spacing: 3px;
+				clear: both;
+				margin-bottom: $content-margin - 0.3;
+				text-transform: uppercase;
+			}
+			.etl-repogridtab-grid-item-description {
+				opacity: 0.8;
+				margin-top: ($content-margin + 0.2);
+				text-align:left;
+				.dir-rtl & {
+				text-align: right;
+			}
+			
+				@include responsive-font($responsive-font-size - 0.1, $core-font-size, false, false);
+				p {
+                   margin: .8rem 0;
+                }
+			}
+			.etl-repogridtab-grid-item-button {
+				display: block;
+				margin-top: 5px;
+				color: darken($base-text-color, 40%);
+				@include responsive-font($responsive-font-size - 0.2, $core-font-size, false, false);
+			}			
+			.etl-repogridtab-grid-item-link {
+				margin-top: ($content-margin - 0.2);
+			}
+		}
+		//Joomla shufle
+		a.etl-repogridtab-grid-item-link-overlay {
+			position: absolute;
+			z-index: 10;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			color: transparent;
+		}
+		a.etl-repogridtab-grid-item-link-overlay:hover {
+			background-color: fadeout($accent-color-1, 90%);
+			color: $accent-color-1;
+			span {
+				float:right;
+				padding:.25rem;
+			}
+		}
+		.etl-repogridtab-grid-item-title {
+			font-size: $core-font-size + .4;
+			line-height: $core-line-height - .06;
+
+			@include breakpoint (desktop-range) {
+				font-size: $core-font-size + .2;
+			}
+
+			@include breakpoint (tablet-range) {
+				font-size: $core-font-size + .2;
+			}
+
+			@include breakpoint (small-mobile-range) {
+				line-height: $core-line-height - .02;
+			}
+		}
+	}
+	
+	// Column layout joomla
+
+	&.gridshuffle {
+
+        position: relative;
+        margin: 0 -($content-padding);
+        overflow: visible !important;
+	}
+	// 2 Columns
+	&.cols-2 {
+
+		.etl-repogridtab-grid-item,
+		.etl-repogridtab-grid-sizer {
+			width: 50%;
+
+			@include breakpoint(mobile-only) {
+				width: 100%;
+			}
+		}
+	}
+
+	// 3 Columns
+	&.cols-3 {
+
+		.etl-repogridtab-grid-item,
+		.etl-repogridtab-grid-sizer {
+			width: 33.3%;
+
+			@include breakpoint(tablet-range) {
+				width: 50%;
+			}
+
+			@include breakpoint(mobile-only) {
+				width: 100%;
+			}
+		}
+	}
+}
+/* etl-repogridtab-display-header-none for joomla article - Remove title and image of Repo */
+.etl-repogridtab-grid-item-titlerepo&.etl-repogridtab-display-header-none {display:none;}
+.etl-repogridtab-grid-item-image&.etl-repogridtab-display-header-none {display:none;}
+.etl-contenttabs-repo&.etl-repogridtab-display-header-none {margin-top:.1rem;}
+
+/* Style for Accordion pure CSS3 see in Code Pen https://codepen.io/Hornebom/pen/JqmEl - No Javascript*/
+
+.etl-accordeon-repo {
+  opacity: 0.9;
+  p {
+	margin: $content-margin 0;
+  }
+//padding: ($content-margin + 0.5);
+@include responsive-font($responsive-font-size - 0.1, $core-font-size - 0.1, false, false);
+
+	.accordeon {
+	  position:relative;
+	  //top:50px;
+	  width:100%;
+	  margin:0 auto; 
+		.item {
+		  position:relative;
+		  width:100%;
+		  min-height:40px;
+		  margin:2px 0;
+		}
+		input[type="radio"], input[type="radio"] + label {
+		  position:absolute;
+		  width:100%;
+		  height:40px;
+		}
+		input[type="radio"] {
+		  opacity:0;
+		  z-index:9;
+		  cursor:pointer;
+		}
+		input[type="radio"] + label {
+		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, 85%);
+		  //background: fadeout($accent-color-1, 85%);
+		  background-repeat:no-repeat;
+		  background-position:99% 20%;
+		  padding:2px 15px 0 15px;
+		  @include responsive-font($responsive-font-size + 0.1, $core-font-size + 0.1, false, false);
+		  color:#333;
+		  z-index:8;
+		}
+		article[id^="content-"] { /* more or individual styling can be applied by using id$="number" */
+		  position:relative;
+		  width:100%;
+		  padding:0px 15px 0px 15px;
+		  height:auto;
+		  max-height:0px;
+		  background:$white;
+		  overflow:hidden;
+		  -webkit-transition:all .25s;
+		  -moz-transition:all .25s;
+		  -o-transition:all .25s;
+		  transition:all .25s;
+		}
+		article[id^="content-"]:before {
+		  content:'';
+		  position:absolute;
+		  top:45px;
+		  left:20px;
+		  width:0;
+		  height:1px;
+		  background:$accent-color-2;
+		  -webkit-transition:width 0s;
+		  -moz-transition:width 0s;
+		  -o-transition:width 0s;
+		  transition:width 0s;
+		  @include breakpoint(mobile-only) {
+			display:none;
+			}
+		}
+		input[type="radio"]:hover + label {
+		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, 95%);
+		  //background: fadeout($accent-color-1, 95%);
+		  border-top: 1px solid fadeout($accent-color-1, 55%);
+		  background-repeat:no-repeat;
+		  background-position:99% 20%;
+		}
+		input[type="radio"]:checked + label {background:$white; border-top: 1px solid fadeout($accent-color-1, 65%);}
+		input[type="radio"]:checked ~ article[id^="content-"] {
+		  height:auto;
+		  max-height:1000px;
+		  padding:55px 15px 15px 15px;
+		  -webkit-transition:all .25s .25s;
+		  -moz-transition:all .25s .25s;
+		  -o-transition:all .25s .25s;
+		  transition:all .25s .25s;
+		}
+		input[type="radio"]:checked ~ article[id^="content-"]:before {
+		  width:40px;
+		  -webkit-transition:width .3s .3s;
+		  -moz-transition:width .3s .3s;
+		  -o-transition:width .3s .3s;
+		  transition:width .3s .3s;
+		}
+	}
+}
+
+/* Styles for Github tab */
+.etl-repotabletitle {margin-bottom:.5rem;
+    @include responsive-font($responsive-font-size + .2, $core-font-size, false, false);
+            font-family: get-font-family($font-family-title);
+            //font-weight: $font-weight-bold;
+	}
+.divTable{
+	display: table;
+	width: 100%;
+	.badge-danger {
+    background-color: #f89406 !important;
+	}
+}
+.divTableRow {
+	display: table-row;	
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #cccccc;
+	display: table-cell;
+	padding: 3px 10px;
+	text-align:center;
+}
+.divTableCell1, .divTableHead1 {
+	border: 1px solid #cccccc;
+	display: table-cell;
+	padding: 3px 10px;
+	text-align: left;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+/* Button Style - Follow Helium Style */
+%g-button {
+    display: inline-block;
+    //font-family: get-font-family($font-family-title);
+    font-weight: 600;
+    //font-size: $core-font-size;
+    line-height: 1.1;
+    letter-spacing: 0.01rem;
+    //text-transform: uppercase;
+    background: $accent-color-1;
+    color: $white;
+    border: 1px solid transparent;
+    //border-radius: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    //padding: 1rem 2rem;
+    vertical-align: middle;
+    text-shadow: none;
+    @include transition(all 0.2s);
+	@include breakpoint(tablet-range) {
+	padding: 0.5rem 1rem;
+	font-size: .9rem;
+	}
+    &:hover, &:active, &:focus {
+        background: darken($accent-color-1, 10%);
+        color: $white !important;
+        outline: 0;
+    }
+
+    &:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+        &:hover {
+            background: $accent-color-1;
+        }
+    }
+}
+.button {
+    @extend %g-button;
+    &.fa {
+        line-height: 1.15;
+
+        &[class*="fa-"] {
+            &:before, &:after {
+                font-family: FontAwesome;
+            }
+        }
+    }
+    &.button-block {
+        width: 100%;
+        display: block;
+    }
+    &.button-xlarge {
+        font-size: $core-font-size + 0.3;
+        padding: 1rem 2rem;
+        //border-radius: 3.5rem;
+    }
+    &.button-large {
+        font-size: $core-font-size + 0.2;
+        padding: .8rem 1.3rem;
+    }
+    &.button-small {
+        font-size: $core-font-size - 0.2;
+        padding: .6rem .7rem;
+    }
+    &.button-xsmall {
+        font-size: $core-font-size - 0.3;
+        padding: .5rem;
+    }
+    &.button-2 {
+        background: $accent-color-2;
+        @include transition(all 0.2s);
+        &:hover, &:active, &:focus {
+            background: darken($accent-color-2, 10%);
+            color: $white;
+        }
+    }
+    &.button-outline {
+        background: transparent;
+        color: $accent-color-1;
+        border-color: $accent-color-1;
+        &:hover, &:active, &:focus {
+            background: $accent-color-1;
+            border-color: transparent;
+            color: $white;
+        }
+    }
+    &.button-outline-light {
+        background: transparent;
+        color: lighten($base-text-color, 10%) !important;
+		font-weight: 400;
+        border-color: $accent-color-1;
+			&:hover, &:active, &:focus {
+				background: fadeout($accent-color-1, 95%);
+			}
+		a {color: $accent-color-1 !important; font-weight: 500;
+			&:hover, &:active, &:focus {
+				color: lighten($accent-color-1, 8%) !important;
+			}
+		}
+    }
+	 &.button-outline-2 {
+        background: transparent;
+        color: $accent-color-2;
+        border-color: $accent-color-2;
+        &:hover, &:active, &:focus {
+            background: $accent-color-2;
+            border-color: transparent;
+            color: $white;
+        }
+    }
+    &.button-gradient {
+        @include linear-gradient(90deg, $accent-color-1, $accent-color-2);
+        border: none;
+
+        &:hover, &:active, &:focus {
+            background: $accent-color-1;
+            color: white;
+        }
+    }
+    &.button-bevel {
+        border-radius: 0.4rem;
+    }
+    &.button-square {
+        border-radius: 0;
+    }
+}
+//Double button Github
+.double-button-left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 2px;
+    margin-right: 0;
+
+}
+
+ .double-button-right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    margin-left: 0;
+}
+
+// The Arrow button
+// Variables
+
+$blackarrow: #4c4c4c;
+
+$text-arrow-space: 16px;
+$shaft-width: 1px;
+$newshaft-width: 40px;
+$shaft-thickness: 1px;
+$arrow-head-width: 8px;
+$arrow-head-thickness: $shaft-thickness;
+
+.the-arrow {
+  width: $shaft-width;
+  transition: all 0.2s;
+ 
+  &.-left {
+    position: absolute;
+    top: 60%;
+    left: 0;
+
+    > .shaft {
+      width: 0;
+      background-color: $blackarrow;
+      
+      &:before,
+      &:after {
+        width: 0;
+        background-color: $blackarrow;
+      }
+
+      &:before {
+        transform: rotate(0);
+      }
+
+      &:after {
+        transform: rotate(0);
+      }
+    }
+  }
+  
+  &.-right {
+    top: 3px;
+    margin-left: 1rem;
+     
+    > .shaft {
+      width: $shaft-width;
+      transition-delay: 0.2s;
+
+      &:before,
+      &:after { 
+        width: $arrow-head-width;
+        transition-delay: 0.3s;
+        transition: all 0.5s;
+      }
+      
+      &:before {
+        transform: rotate(40deg);
+      }
+      
+      &:after {
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  > .shaft {
+    background-color: $blackarrow;
+    display: block;
+    height: $shaft-thickness;
+    position: relative;
+    transition: all 0.2s;
+    transition-delay: 0;
+    will-change: transform;
+
+    &:before,
+    &:after {
+      background-color: $blackarrow;
+      content: '';
+      display: block;
+      height: $arrow-head-thickness;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: all 0.2s;
+      transition-delay: 0;
+    }
+
+    &:before {
+      transform-origin: top right;
+    }
+
+    &:after {
+      transform-origin: bottom right;
+    }
+  }
+}
+
+
+
+// Animated Arrow Button
+.textarrow {
+  //font-family: 'Helvetica Neue LT W01_41488878';
+    font-size: 20px;
+    line-height: 35px;
+    margin-top: 0.5rem;
+}
+.animated-arrow {
+  display: inline-block;
+  color: $blackarrow;
+  font-size: 1.25em;
+  font-style: italic;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.2s;
+  
+  &:hover {
+    color: lighten($accent-color-1, 8%);
+    
+    > .the-arrow.-left {
+      > .shaft {
+        width: $newshaft-width;
+        transition-delay: 0.1s;
+        background-color: lighten($accent-color-1, 8%);
+
+        &:before,
+        &:after {
+          width: $arrow-head-width;
+          transition-delay: 0.1s;
+          background-color: lighten($accent-color-1, 8%);
+        }
+
+        &:before {
+          transform: rotate(40deg);
+        }
+
+        &:after {
+          transform: rotate(-40deg);
+        }
+      }
+    }
+    
+    > .mainarrow {
+      transform: translateX($shaft-width + $text-arrow-space);
+      transform: translateX($newshaft-width + $text-arrow-space);
+      
+      > .the-arrow.-right {
+        > .shaft {
+          width: 0;
+          transform: translateX(200%);
+          transition-delay: 0;
+          
+          &:before,
+          &:after {
+            width: 0;
+            transition-delay: 0;
+            transition: all 0.1s;
+          }
+
+          &:before {
+            transform: rotate(0);
+          }
+
+          &:after {
+            transform: rotate(0);
+          }
+        }
+      }
+    }
+  }
+  
+  > .mainarrow {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    
+    > .text {
+      margin: 0 $text-arrow-space 0 0;
+      line-height: 1;
+    }
+    
+    > .the-arrow {
+      position: relative;
+    }
+  }
+}
+
+
+//changelog ETL special Classes
+.changelog h5{margin-bottom:.5rem;}
+.changelog ol{list-style:none;padding:0;margin:0 0 3rem 0;}
+.changelog ol a[href='#new']+ul>li:before{background-color:#207de5;content:'Nouveau';}
+.changelog ol a[href='#improved']+ul>li:before{background-color:#fbca04;color:#333;content:'Amélioration';}
+.changelog ol a[href='#bugfix']+ul>li:before{background-color:#fc2929;content:'Bug fix';}
+.changelog ul{list-style:none;padding:0;}
+.changelog ul li{margin-bottom:.1rem;padding-left:6rem;}
+.changelog ul li:before{margin-left:-6rem;display:inline-block;border-radius:2px;color:#fff;font-weight:bold;margin-right:1rem;text-align:center;width:5rem;font-size:.8rem;font-style:normal;}
+.changelog-en h5{margin-bottom:.5rem;}
+.changelog-en ol{list-style:none;padding:0;margin:0 0 3rem 0;}
+.changelog-en ol a[href='#new']+ul>li:before{background-color:#207de5;content:'New';}
+.changelog-en ol a[href='#improved']+ul>li:before{background-color:#fbca04;color:#333;content:'Improved';}
+.changelog-en ol a[href='#bugfix']+ul>li:before{background-color:#fc2929;content:'Bug fix';}
+.changelog-en ul{list-style:none;padding:0;}
+.changelog-en ul li{margin-bottom:.1rem;padding-left:6rem;}
+.changelog-en ul li:before{margin-left:-6rem;display:inline-block;border-radius:2px;color:#fff;font-weight:bold;margin-right:1rem;text-align:center;width:5rem;font-size:.8rem;font-style:normal;}
+

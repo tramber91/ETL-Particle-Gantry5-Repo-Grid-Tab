@@ -1,0 +1,980 @@
+name: ETL Repo Grid Tab
+description: Gestion des Assets/Github repositories par grille et tabs by En Toutes Lettres.
+type: particle
+icon: fa-github
+
+form:
+  overrideable: false
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Activer globalement les particules.
+      default: true
+
+    _tabs:
+      type: container.tabs
+      fields:
+        _tab_settings:
+          label: Réglages
+          overridable: false
+          fields:
+            etlnoteintro:
+              type: separator.note
+              class: settings-param
+              content: '<div style="color: #5fa0c0"><h4>Particule Gestion des Assets/Repo par grille et tabs</h4></div><div class="float-left"><img src="https://www.en-toutes-lettres.fr/images/etl/etl_gantry5_particles.png" alt="En toutes lettres - gantry particles"></div><div class="settings-param-field">&nbsp;&nbsp;&nbsp;<a href="https://www.demo-gantry5.en-toutes-lettres.fr/en/particles-en/repository-github-tabs-en" target="_blank">Info et demo&nbsp;<i class="fa fa-fw fa-external-link"></i></a></div>'
+
+            class:
+              overridable: false
+              type: input.selectize
+              label: CSS Classes
+              description: Entrez la (les) classe(s) CSS que vous souhaitez utiliser dans le contenu de la particule.
+
+            source:
+              overridable: false
+              type: select.select
+              label: Source du contenu
+              description: Choisissez si le contenu doit être chargé à partir de la plate-forme (Joomla!) ou de la particule.
+              default: particle
+              options:
+                particle: Particule
+                joomla: Joomla
+
+            title:
+              overridable: false
+              type: input.text
+              label: Titre pricipal
+              description: Personnalisez le texte du titre principal.
+              placeholder: Entrez titre
+ 
+            maindescription:
+              type: textarea.textarea
+              label: Description
+              description: Personnaliser la description principale.
+
+            mainimage:
+              type: input.imagepicker
+              label: Image
+              description: Sélectionnez l'image principale souhaitée.
+
+            mainimageloc:
+              type: select.select
+              label: Emplacement de l'image
+              description: Sélectionnez l'emplacement de l'image principale.
+              placeholder: 'Selectionner...'
+              default: left
+              options:
+                left: Gauche
+                right: Droite
+
+            gtnotetabs:
+              type: separator.note
+              content: "<strong>Source du contenu Particule</strong> - Définir le style des onglets (Tab) - Onglets créés si plus de une catégorie. Possibilité de créer un onglet d'introduction (Onglet 0) comprenant la description principale. Format de date"
+
+            tabstyle:
+              type: select.select
+              label: Onglet style
+              description: Sélectionner le style predéfini de l'onglet.
+              default: etltabcenterborderspace
+              options:
+                etltabcenterborderspace: Centrée bordure espace
+                etltableftborderspace: Gauche bordure espace
+                etltableftbordernospace: Gauche bordure espace (non)
+                etltableftnobordernospace: Gauche bordure (non) espace (non)
+
+            tabhome:
+              type: input.checkbox
+              label: Onglet 0
+              description: Info principales sur premier onglet (Tab 0).
+              default: false
+
+            titletabhome:
+              overridable: false
+              type: input.text
+              label: Onglet 0 titre
+              description: Personnalisez le titre qui apparaîtra dans le premier onglet.
+              placeholder: Entrez titre
+
+            subtitletabhome:
+              overridable: false
+              type: input.text
+              label: Onglet 0 sous-titre
+              description: Personnalisez le sous-titre qui apparaîtra dans le premier onglet.
+              placeholder: Entrez sous-titre
+
+            date_format_repo:
+              overridable: false
+              type: select.date
+              label: Format de date
+              default: 'F d, Y'
+              description: Sélectionnez le format de date préféré. Laissez vide pour ne pas afficher de date.
+              selectize:
+                  allowEmptyOption: true
+              options:
+                  'l, F d, Y': Date1
+                  'l, d F': Date2
+                  'D, d F': Date3
+                  'F d': Date4
+                  'd F': Date5
+                  'd M': Date6
+                  'D, M d, Y': Date7
+                  'D, M d, y': Date8
+                  'l': Date9
+                  'l j F Y': Date10
+                  'j F Y': Date11
+                  'F d, Y': Date12
+
+            gtnotetabsshuffle:
+              type: separator.note
+              content: '<strong>Source du contenu Catégories/Articles Joomla!</strong> - options Navigation (Shuffle.js)'
+
+            navtitle:
+              overridable: false
+              type: input.text
+              label: Navigation titre
+              description: Personnalisez le texte du titre pour la navigation.
+              placeholder: Entrez titre
+
+            uppertitle:
+              overridable: false
+              type: input.text
+              label: Navigation sous-titre
+              description: Personnalisez le texte du sous-titre qui apparaîtra au-dessus du texte du titre de navigation normal.
+              placeholder: Entrez sous-titre
+
+            allitems:
+              overridable: false
+              type: input.text
+              label: 'Étiquette "Tous les articles"'
+              description: Entrez l'étiquette du bouton de tous les éléments (laissez vide pour masquer).
+              placeholder: 'Tous'
+
+            selected:
+              type: select.select
+              label: Choisir
+              description: Choisissez le premier élément de navigation.
+              default: all
+              options:
+                all: Tous
+                first: Première catégorie
+
+            date_format:
+              overridable: false
+              type: select.date
+              label: Format de date
+              default: 'F d, Y'
+              description: Sélectionnez le format de date préféré. Laissez vide pour ne pas afficher de date.
+              selectize:
+                  allowEmptyOption: true
+              options:
+                  'l, F d, Y': Date1
+                  'l, d F': Date2
+                  'D, d F': Date3
+                  'F d': Date4
+                  'd F': Date5
+                  'd M': Date6
+                  'D, M d, Y': Date7
+                  'D, M d, y': Date8
+                  'l': Date9
+                  'l j F Y': Date10
+                  'j F Y': Date11
+                  'F d, Y': Date12
+
+            catcolsjoomla:
+              type: select.selectize
+              label: Grille Colonne Joomla
+              description: Sélectionnez le nombre de la colonne de la grille pour les éléments de la liste (articles Joomla)
+              default: cols-1
+              options:
+                cols-1: 1 Column
+                cols-2: 2 Columns
+                cols-3: 3 Columns
+
+            jimagecenter:
+              type: input.checkbox
+              label: Image Item Centrée?
+              description: Non par défault. Utilisé en colonnes multiples.
+              default: false
+
+            jreadmorelabel:
+              overridable: false
+              type: input.text
+              label: '"En savoir plus" étiquette'
+              description: Entrez l'étiquette du bouton Lire la suite (laissez vide pour masquer).
+              default: En savoir plus
+
+
+        _tab_textsetting:
+          label: Étiquettes
+          overridable: false
+          fields:
+
+            gtnoteheading:
+              type: separator.note
+              content: '<strong>Source Particule</strong><br />Corriger si nécessaire toutes les étiquettes prédéfinies des items - important pour la traduction.'
+              class: alert alert-info
+            datetitle:
+              overridable: false
+              type: input.text
+              label: Date titre
+              description: Personnalisez le texte du titre de la date.
+              default: Dernière mise à jour: 
+            versiontitle:
+              overridable: false
+              type: input.text
+              label: Version titre
+              description: Personnalisez le texte du titre de la version.
+              default: Version:
+            websitetitle:
+              overridable: false
+              type: input.text
+              label: Site web titre
+              description: Personnalisez le texte du titre du site web.
+              default: Site web:
+            gtnoteheadingbt:
+              type: separator.note
+              content: 'Définir les étiquettes des éléments de l`information "Descriptions" - Navigation en accordéon.'
+            infoplusdescription1:
+              type: input.text
+              label: Description
+              description: Définir l'étiquette 'Description'
+              default: Description
+            infoplusdescription2:
+              type: input.text
+              label: Description longue
+              description: Définir l'étiquette 'Description longue'
+              default: En savoir plus
+            infoplusdescription3:
+              type: input.text
+              label: Information additionnelle
+              description: Définir un libellé pour des informations supplémentaires telles que 'Changelog'.
+              default: Changelog
+            gtnotetitle:
+              type: separator.note
+              content: 'En-tête de la table Github repository.<br>Le language HTML peut être utilisé comme les "Font Awesome" ou les "Utility Classes".'
+            releasenametitle:
+              overridable: false
+              type: input.text
+              label: Nom de la version
+              description: Personnalisez le texte du nom de version.
+              default: Nom de la version <i class="fa fa-info-circle" aria-hidden="true"></i>
+            prerelease:
+              overridable: false
+              type: input.text
+              label: Pré-version
+              description: Personnalisez l'étiquette de la pré-version (géré dans un bouton dans le tableau après la description de la version).
+              default: Pré-version
+            filesizetitle:
+              overridable: false
+              type: input.text
+              label: Télécharger (taille)
+              description: "Personnalisez le texte 'Télécharger (taille)'." 
+              default: <span class="hidden-phone">Télécharger&nbsp;</span><i class="fa fa-cloud-download" aria-hidden="true"></i> (taille)
+            downloadtitle:
+              overridable: false
+              type: input.text
+              label: Nombre de téléchargements
+              description: Personnalisez le texte du nombre de téléchargements.
+              default: <span class="hidden-phone">Nombre de téléchargements&nbsp;</span><i class="fa fa-tachometer" aria-hidden="true"></i> 
+            releasedatetitle:
+              overridable: false
+              type: input.text
+              label: Date de sortie
+              description: Personnalisez le texte de la date de sortie.
+              default: <span class="hidden-phone">Date de sortie&nbsp;</span><i class="fa fa-calendar" aria-hidden="true"></i>
+            dateformats:
+              type: select.select
+              label: Format de date
+              description: Sélectionnez le format de date préféré.
+              default: date1
+              options:
+                date1: YYYY-MM-DD
+                date2: YYYY MM DD
+                date3: DD-MM-YYYY
+                date4: DD MM YYYY
+            activedaystitle:
+              overridable: false
+              type: input.text
+              label: Jours actifs
+              description: "Personnalisez le texte 'jours actifs' (info en provenance de Github). Cette colonne peut être supprimée dans les paramètres."
+              default: Jours actifs
+            totaldownload:
+              overridable: false
+              type: input.text
+              label: Téléchargements totaux
+              description: "Personnalisez le texte 'Téléchargements totaux'. Cette valeur peut être supprimée dans les paramètres."
+              default: Téléchargements totaux:
+            btgtinfopopup:
+              overridable: false
+              type: input.text
+              label: Intro info (info-bulle)
+              description: "Personnalisez l'introduction de l'info-bulle des informations de la version."
+              default: Information version
+            btgtdownloadpopup:
+              overridable: false
+              type: input.text
+              label: Intro Télécharger (info-bulle)
+              description: "Personnalisez l'introduction de l'info-bulle Téléchargement de la version."
+              default: Télécharger version
+
+        _tab_collection:
+          label: Catégories
+          overridable: false
+          fields:
+            gtnotecat:
+              type: separator.note
+              class: alert alert-info
+              content: '<strong>Source Particule</strong><br />Créez vos catégories. Par catégorie, vous gérez vos vos items (Repositories Github, assets ou autres)..'
+            cases:
+              type: collection.list
+              array: true
+              label: Catégorie
+              description: Créer une catégorie.
+              value: title
+              ajax: true
+              overridable: false
+              fields:
+                _tabscollection2:
+                  type: container.tabs
+                  fields:
+                    _tab_collection2a:
+                      label: Onglet/Catégorie info
+                      overridable: false
+                      fields:
+                        .gtnotecategory:
+                           type: separator.note
+                           class: alert alert-info
+                           content: 'Définissez les descriptions des onglets et des catégories et créer vos items (repositories ou autes).'
+                        .gtnotetabcategory:
+                           type: separator.note
+                           content: 'Onglets'
+                        .tabtitle:
+                          type: input.text
+                          label: Titre de l'onglet
+                          description: Entrez le titre de l'onglet.
+                        .tabsubtitle:
+                          type: input.text
+                          label: Sous-titre de l'onglet
+                          description: Entrez le sous-titre de l'onglet (& nbsp; peut être utilisé si nécessaire).
+                        .tabremoval:
+                          type: input.checkbox
+                          label: Suppression de l'onglet?
+                          description: Attention, a utiliser uniquement si vous en avez besoin. Peut être utilisé lorsque vous chargez un module avec un plugin de position comme Module Anywhere (Utilisation mono catégorie pour cette particule).
+                          default: false
+                        .gtnotecatcategory:
+                           type: separator.note
+                           content: 'Categorie Data'
+                        .catcols:
+                           type: select.selectize
+                           label: Grille
+                           description: Entrez le nombre de colonnes que vous souhaitez pour afficher votre grille.
+                           default: etl-1cols
+                           options:
+                             etl-1cols: 1 colonne
+                             etl-2cols: 2 colonnes
+                             etl-3cols: 3 colonnes
+                        .repocattitle:
+                          type: input.text
+                          label: Catégorie Nom
+                          description: Personnalisez le nom de la catégorie.
+                          placeholder: Entrez le nom de la catégorie
+                        .repocatimage:
+                          type: input.imagepicker
+                          label: Categorie Image
+                          description: Sélectionnez l'image de la catégorie.
+                        .repoimageloc:
+                          type: select.select
+                          label: Emplacement de l'image
+                          description: Sélectionnez l'emplacement de l'image de la catégorie.
+                          placeholder: 'Sélection ...'
+                          default: left
+                          options:
+                            left: Gauche
+                            right: Droite
+                        .repocatdescription:
+                          type: textarea.textarea
+                          label: Catégorie Description
+                          description: Personnalisez la description de votre catégorie.
+                          placeholder: Entrez votre description
+
+                    _tab_collection2b:
+                      label: Création Items
+                      overridable: false
+                      fields:
+                        .gtnotebuttonclass:
+                           type: separator.note
+                           content: 'Items (Assets/Repositories) création<br>Classes CSS supplémentaires pour "button": button-2, button-outline, button-outline-light, button-gradient, button-bevel, button-square, button-block, button-xlarge, button-large, button-small, button-xsmall.'
+                        .items:
+                          type: collection.list
+                          array: true
+                          label: Items
+                          description: Créer asset/repository items.
+                          value: title
+                          ajax: true
+                          fields:
+                            _tabs2:
+                              type: container.tabs
+                              fields:
+                                _tab_settings2:
+                                  label: Base
+                                  overridable: false
+                                  fields:
+                                        .stdinfo:
+                                          type: separator.note
+                                          class: alert alert-info
+                                          content: "<strong>Information principale (Base)</strong><br />Allez dans l'onglet 'Github repo' si votre fichier se trouve sur Github ou dans l'onglet 'Int/Ext asset' si votre fichier se trouve en interne sur votre serveur ou lien de fichier externe.<br />Allez dans l'onglet 'Plus d'infos' pour un autre lien externe."
+                                        .articlerelatedrepo:
+                                          type: input.checkbox
+                                          label: Supprimer Bloc Titre
+                                          description: A n'utiliser que si besoin. Utile si la particule est liée à un article Joomla avec un plugin de chargement de module (item unique dans la première catégorie). Il pourrait être intéressant d'afficher l'item  sans image et titre qui sont gérés par l'article de Joomla!
+                                          default: false
+                                        .repotitle:
+                                          type: input.text
+                                          label: Titre
+                                          description: Entrez le titre de votre item (repository/asset).
+                                        .repotitlecenter:
+                                          type: input.checkbox
+                                          label: Centrer Titre
+                                          description: Définissez si le titre de l'item doit être centré.
+                                          default: false
+                                        .repodescription:
+                                          type: textarea.textarea
+                                          label: Description courte
+                                          description: Saisissez une brève description de l'item.
+                                        .image:
+                                          type: input.imagepicker
+                                          label: Image
+                                          description: Sélectionnez l'image souhaitée.
+                                        .repoimagecenter:
+                                          type: input.checkbox
+                                          label: Centrer images?
+                                          description: Permet de center l'image de l'item. Utiles poour multicolonnes.
+                                          default: false
+                                        .version:
+                                          type: input.text
+                                          label: Version
+                                          description: Entrez le numéro de version
+                                          placeholder: v1.0
+                                        .versiontype:
+                                          type: input.text
+                                          label: Version type
+                                          description: Entrez version type: Stable ou RC.
+                                          default: Stable
+                                        .versionlicence:
+                                          type: input.text
+                                          label: Licence
+                                          description: Entrez License.
+                                          placeholder: Licence MIT
+                                        .date:
+                                          type: input.date
+                                          label: Version Date
+                                          description: Entrez la date de la version
+                                        .maintype:
+                                          type: input.text
+                                          label: Type
+                                          description: Entrez le type principal de l'item (unique).
+                                          placeholder: Particule ou Composant ou ... 
+                                        .environments:
+                                          type: input.text
+                                          label: Environments
+                                          description: "Entrez chaque valeur d'environnement autour d'une balise 'span'. Voir l'exemple de la valeur par défaut."
+                                          default: <span>Gantry 5</span><span>Joomla</span>
+                                        .author:
+                                          type: input.text
+                                          label: Auteur
+                                          description: Entrez le nom de l'auteur
+                                        .avatar:
+                                          type: input.imagepicker
+                                          label: Petite Image/Logo
+                                          description: Entrez l'image de l'auteur (avatar) ou le logo.
+                                        .avatarheight:
+                                          type: input.number
+                                          label: Hauteur de l'image/Logo (px)
+                                          description: Hauteur maximale (max-height) de la photo de l'auteur (avatar) ou du logo (en pixel). Hauteur maximale par défaut 25px.
+                                          default: 25
+                                        .avatarrounded:
+                                          type: input.checkbox
+                                          label: Image arrondie?
+                                          description: Définissez si l'image/logo utilise une classe CSS arrondie.
+                                          default: false
+                                        .websitename:
+                                          type: input.text
+                                          label: Site web nom
+                                          description: Personnalisez le nom du site web.
+                                          placeholder: www.mywebsite.com
+                                        .websitelink:
+                                          type: input.text
+                                          label: Site web adresse
+                                          description: Spécifiez l'adresse du site web.
+                                          placeholder: https://www.mywebsite.com
+                                        .websitetarget:
+                                          type: select.selectize
+                                          label: Site web cible
+                                          description: Choisir entre fenêtre parente (Self) ou Nouvelle fenêtre pour la cible.
+                                          placeholder: 'Sélectionner...'
+                                          default: _blank
+                                          options:
+                                              _self: Self
+                                              _blank: Nouvelle fenêtre
+                                        .infomaindatas:
+                                          type: separator.note
+                                          content: 'Bloc informations principales: Centrer ou non.'
+                                        .datacenter:
+                                          type: input.checkbox
+                                          label: Centrer Info Principales
+                                          description: Définissez si le bloc des informations principales doit être centré.
+                                          default: false
+                                        .datacenteronlyphone:
+                                          type: input.checkbox
+                                          label: Centrer Info Principales téléphone uniquement
+                                          description: Définissez si le bloc des informations principales doit être centré mais uniquement sur les téléphones portables.
+                                          default: true
+                                _tab_settings3:
+                                   label: Info +
+                                   overridable: false
+                                   fields:
+                                        .repochangeloginfo:
+                                          type: separator.note
+                                          content: '<a href="https://www.en-toutes-lettres.fr/en/web-services/joomla-news/72-joomla-tutorial/tutoriels-css/257-tutoriel-css-jouer-avec-les-listes-imbriquees-ex-creer-liste-pour-changelog" target="_blank"><i class="fa fa-external-link"></i> voir article pour la création du "Changelog"</a> - Les classes CSS sont incluses dans la particle'
+                                        .repolongdescription:
+                                          type: textarea.textarea
+                                          label: Description Longue
+                                          description: Entrez la description longue de l'article. Pas trop long - hauteur max 1000 px pour accordéon.
+                                        .longinfoinfolink:
+                                          type: separator.note
+                                          content: 'Bouton Description longue "En savoir plus" si nécessaire (Lien externe).'
+                                        .longlabel:
+                                          type: input.text
+                                          label: Étiquette
+                                          description: Personnalisez l'étiquette "En savoir plus"
+                                          placeholder: En savoir plus
+                                        .longlink:
+                                          type: input.text
+                                          label: Lien
+                                          description: Spécifiez l'adresse du lien.
+                                        .longbuttonicon:
+                                          type: input.icon
+                                          label: Icône
+                                          description: Spécifiez l'icône 'En savoir plus'.
+                                          default: fa fa-external-link
+                                        .longreadmoreclass:
+                                          type: input.selectize
+                                          label: Classes CSS
+                                          default: button
+                                          description: "Nom de classe CSS pour le bouton 'En savoir plus'. Classe supplémentaire pour 'bouton' possible. Inutile si le Bouton spécial 'Flèche' est coché."
+                                        .longreadmoreclassarrow1:
+                                          type: input.checkbox
+                                          label: Bouton spécial "Flèche"
+                                          description: "Définissez si utilisation du style de Bouton spécial 'Flèche'."
+                                          default: false
+                                        .longreadmoretarget:
+                                          type: select.selectize
+                                          label: Cible (pour le lien)
+                                          description: Choisir entre fenêtre parente (Self) ou Nouvelle fenêtre pour la cible.
+                                          placeholder: 'Sélectionner...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: Nouvelle fenêtre
+                                        .readinfoinfoinfo:
+                                          type: separator.note
+                                          content: 'Autres Informations (comme Changelog)'
+                                        .repochangelog:
+                                          type: textarea.textarea
+                                          label: Info sup (comme Changelog)
+                                          description: Entrez les informations supplémentaires ou le journal des modifications (CSS personnalisé spécial pour le journal des modifications disponible). Pas trop long - hauteur max 1000px pour accordéon.
+                                        .readinfoinfolink:
+                                          type: separator.note
+                                          content: 'Bouton Informations supplémentaires "En savoir plus" si nécessaire (Lien externe).'
+                                        .readlabel:
+                                          type: input.text
+                                          label: Étiquette
+                                          description: Personnalisez l'étiquette "En savoir plus"
+                                          placeholder: En savoir plus
+                                        .readlink:
+                                          type: input.text
+                                          label: Lien
+                                          description: Spécifiez l'adresse du lien.
+                                        .readbuttonicon:
+                                          type: input.icon
+                                          label: Icône
+                                          description: Spécifiez l'icône 'En savoir plus'.
+                                          default: fa fa-external-link
+                                        .readreadmoreclass:
+                                          type: input.selectize
+                                          label: Classes CSS
+                                          default: button
+                                          description: "Nom de classe CSS pour le bouton 'En savoir plus'. Classe supplémentaire pour 'bouton' possible. Inutile si le Bouton spécial 'Flèche' est coché."
+                                        .readreadmoreclassarrow1:
+                                          type: input.checkbox
+                                          label: Bouton spécial "Flèche"
+                                          description: "Définissez si utilisation du style de Bouton spécial 'Flèche'."
+                                          default: false
+                                        .readreadmoretarget:
+                                          type: select.selectize
+                                          label: Cible (pour le lien)
+                                          description: Choisir entre fenêtre parente (Self) ou Nouvelle fenêtre pour la cible.
+                                          placeholder: 'Sélectionner...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: Nouvelle fenêtre
+                                        .infoinfolink:
+                                          type: separator.note
+                                          content: 'Fin Bloc Informations pricipales. Bouton "Lire la suite" si nécessaire (lien externe).'
+                                        .label:
+                                          type: input.text
+                                          label: Étiquette
+                                          description: Personnalisez l'étiquette "En savoir plus"
+                                          placeholder: En savoir plus
+                                        .link:
+                                          type: input.text
+                                          label: Lien
+                                          description: Spécifiez l'adresse du lien.
+                                        .buttonicon:
+                                          type: input.icon
+                                          label: Icône
+                                          description: Spécifiez l'icône 'En savoir plus'.
+                                          default: fa fa-external-link
+                                        .readmoreclass:
+                                          type: input.selectize
+                                          label: Classes CSS
+                                          default: button
+                                          description: "Nom de classe CSS pour le bouton 'En savoir plus'. Classe supplémentaire pour 'bouton' possible. Inutile si le Bouton spécial 'Flèche' est coché."
+                                        .readmoreclassarrow1:
+                                          type: input.checkbox
+                                          label: Bouton spécial "Flèche"
+                                          description: "Définissez si utilisation du style de Bouton spécial 'Flèche'."
+                                          default: false
+                                        .readmoretarget:
+                                          type: select.selectize
+                                          label: Cible (pour le lien)
+                                          description: Choisir entre fenêtre parente (Self) ou Nouvelle fenêtre pour la cible.
+                                          placeholder: 'Sélectionner...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: Nouvelle fenêtre
+                                        .infoinfobottom:
+                                          type: separator.note
+                                          content: 'Description bas'
+                                        .bottomdescription:
+                                          type: textarea.textarea
+                                          label: Description bas
+                                          description: "Si nécessaire, entrez une description en bas de l'item (pleine page)."
+                                        .formatbottom:
+                                          type: select.selectize
+                                          label: Format Bottom
+                                          description: Sélectionnez la manière dont vous souhaitez afficher la description bas de l'item (taille de police par défaut ou plus petite, centrer ou pas).
+                                          placeholder: 'Sélectionner...'
+                                          default: bottomdefault
+                                          options:
+                                              bottomdefault: Défaut
+                                              bottomsmall: Petit
+                                              bottomdefaultcenter: Défaut centré
+                                              bottomsmallcenter: Petit centré
+
+                                _tab_settings4:
+                                   label: Github repo
+                                   overridable: false
+                                   fields:
+                                        .gtinfo:
+                                          type: separator.note
+                                          content: '<i class="fa fa-github" aria-hidden="true"></i> Informations Github repository.'
+                                        .gtuser:
+                                          type: input.text
+                                          label: Auteur Github
+                                          description: Entrez l'auteur Github (profil).
+                                        .reponame:
+                                          type: input.text
+                                          label: Nom Repository
+                                          description: Entrez le nom du Repository (Repository public uniquement).
+                                        .gtinfodisplay:
+                                          type: separator.note
+                                          content: '<i class="fa fa-github" aria-hidden="true"></i> Github repository options.'
+                                        .repotabletitle:
+                                          type: input.text
+                                          label: Titre table Github 
+                                          default: <strong/>Données Github</strong>: information et téléchargements.
+                                          description: Entrez le titre pour votre table de données Github (si nécessaire).
+                                        .nbrelease:
+                                          type: select.select
+                                          label: Nombre de Release
+                                          description: Nombre de Release à afficher: Toutes ou la dernière sous forme de tableau, la dernière sous forme de double bouton. Le nombre Release est  défini par Github (limite).
+                                          placeholder: 'Sélectionner...'
+                                          default: nball
+                                          options:
+                                              nball: Toutes (table)
+                                              nb1: La dernière (table)
+                                              nb1but: La dernière (double bouton)
+                                        .btgtleft:
+                                          type: input.selectize
+                                          label: Double bouton gauche classe CSS
+                                          default: button button-outline-light
+                                          description: Dernière version (double bouton): nom de classe CSS pour le bouton gauche. Classe supplémentaire pour 'bouton' possible.
+                                        .btgtright:
+                                          type: input.selectize
+                                          label: Double bouton droit classe CSS
+                                          default: button
+                                          description: Dernière version (double bouton): nom de classe CSS pour le bouton droit. Classe supplémentaire pour 'bouton' possible.
+                                        .showactivedays:
+                                          type: input.checkbox
+                                          label: Afficher les jours actifs
+                                          description: Afficher les jours actifs dans la table.
+                                          default: true
+                                        .showtotaldownload:
+                                          type: input.checkbox
+                                          label: Afficher le téléchargement total
+                                          description: Afficher le téléchargement total sous la table (somme de toutes les versions).
+                                          default: true
+                                _tab_settings5:
+                                   label: Int/Ext asset
+                                   overridable: false
+                                   fields:
+                                        .internalrepoinfo:
+                                          type: separator.note
+                                          content: 'Gestion des items internes ou externes.<br>Format autorisé: zip, pdf, tar, targz.<br>Veuillez utiliser pour les ressources internes un répertoire sécurisé pour vos fichiers que vous avez créés précédemment.'
+                                        .btname:
+                                          type: input.text
+                                          label: Nom du bouton
+                                          description: Entrez le nom du bouton.
+                                          placeholder: Entrez le nom du bouton
+                                        .bticon:
+                                          type: input.icon
+                                          label: Icône
+                                          description: Spécifiez l'icône (lien) si nécessaire.
+                                        .btfile:
+                                          type: input.filepicker
+                                          label: Asset
+                                          description: Charger l'élément à afficher (zip|pdf|tar|targz). Collez votre lien en cas de lien externe.
+                                          icon: fa-file-code-o
+                                          placeholder: 'http://../votrefichier'
+                                          filter: '\.(zip|pdf|tar|targz)$'
+                                        .bttarget:
+                                          type: select.selectize
+                                          label: Cible
+                                          description: Choisir entre fenêtre parente (Self) ou Nouvelle fenêtre pour la cible.
+                                          placeholder: 'Selectionner...'
+                                          default: _self
+                                          options:
+                                              _self: Self
+                                              _blank: Nouvelle fenêtre
+                                        .btclass:
+                                          overridable: false
+                                          type: input.selectize
+                                          label: Classes CSS
+                                          description: "Nom de classe CSS pour le bouton. Classe supplémentaire pour 'button' possible. Inutile si le Bouton spécial 'Flèche' est coché."
+                                          default: button
+                                        .readmoreclassarrow2:
+                                          type: input.checkbox
+                                          label: Bouton spécial "Flèche"
+                                          description: Définissez si utilisation du style de Bouton spécial "Flèche".
+                                          default: false
+                                        .sdcinf:
+                                          type: separator.note
+                                          content: 'Simple Download Counter plugin - Charger votre fichier<br />Si la particule est chargé dans un article Joomla! vous pouvez utiliser le plugin <a href = "https://yagnenok.com/en/joomla-3/simple-download-counter/211-simple-download-counter-version-1-4-released.html "target =" _ blank "> Simple Download Counter </a>. Votre dossier avec vos fichiers doit être nommé <strong>"etl_download"</strong> et situé à la racine de votre serveur. Ne pas oublier de modifier les paramètres du plugin concernant le nom du dossier. Ne pas utiliser les espaces dans les noms de fichiers!'
+                                        .sdcbtfile:
+                                          type: input.filepicker
+                                          label: Fichier SDC
+                                          description: Charger le fichier à afficher (zip|pdf|tar|targz).
+                                          icon: fa-file-code-o
+                                          placeholder: 'Selectionner votre fichier'
+                                          filter: '\.(zip|pdf|tar|targz)$'
+                                          root: etl_download
+                                        .sdcbtclass:
+                                          type: input.selectize
+                                          label: lien Class CSS
+                                          default: button button-outline-light
+                                          description: Nom de la classe CSS pour lien de téléchargement. Classe supplémentaire pour 'button' possible.
+        _tab_articles:
+          label: Articles
+          overridable: false
+          fields:
+            gtnotecatj1:
+              type: separator.note
+              class: alert alert-info
+              content: '<strong>Source Joomla</strong> - Sélection.'
+
+            article.filter.categories:
+              overridable: false
+              type: joomla.categories
+              label: Catégories
+              description: Sélectionnez les catégories dans lesquelles les articles doivent être extraits.
+
+            article.filter.articles:
+              overridable: false
+              type: input.text
+              label: Articles
+              description: Entrez les articles Joomla à afficher. Il doit s'agir d'une liste d'identifiants d'articles séparés par une virgule (c'est-à-dire 1, 2, 3, 4, 5).
+
+            article.filter.featured:
+              overridable: false
+              type: select.select
+              label: Articles en vedette
+              description: Sélectionnez la manière dont les articles en vedette doivent être filtrés.
+              default: ''
+              options:
+                include: Inclure
+                exclude: Exclure
+                only: Seulement
+
+            article.limit.total:
+              overridable: false
+              type: input.text
+              label: Nombre d'articles
+              description: Saisissez le nombre maximum d'articles à afficher.
+              default: 6
+              pattern: '\d{1,2}'
+
+            article.limit.start:
+              overridable: false
+              type: input.text
+              label: Commencer à partir de
+              description: "Entrez le décalage en spécifiant le premier article à renvoyer. La valeur par défaut est '0' (le premier article)."
+              default: 0
+              pattern: '\d{1,2}'
+
+            article.sort.orderby:
+              overridable: false
+              type: select.select
+              label: Classé par
+              description: Sélectionnez comment les articles doivent être classés.
+              default: publish_up
+              options:
+                publish_up: Date de publication
+                created: Date de création
+                modified: Date de la dernière modification
+                title: Titre
+                ordering: Ordre
+                hits: Hits
+                id: ID
+                alias: Alias
+
+            article.sort.ordering:
+              overridable: false
+              type: select.select
+              label: Ordre du classement
+              description: Sélectionnez comment les articles doivent être classés.
+              default: ASC
+              options:
+                ASC: Ascendant
+                DESC: Descendant
+
+        _tab_display:
+          label: Affichage des articles
+          overridable: false
+          fields:
+            gtnotecatj2:
+              type: separator.note
+              class: alert alert-info
+              content: "<strong>Source Joomla</strong> - Options d'affichage des articles."
+
+            article.display.image.enabled:
+              overridable: false
+              type: select.select
+              label: Image
+              description: "Sélectionnez si et quelle image de l'article doit être affichée."
+              options:
+                intro: Introduction
+                full: Article complet
+                '': Aucune
+
+            article.display.text.type:
+              overridable: false
+              type: select.select
+              label: Texte de l'article
+              description: "Sélectionnez si et comment le texte de l'article doit être affiché."
+              options:
+                intro: Introduction
+                full: Article complet
+                '': Cacher
+
+            article.display.text.limit:
+              overridable: false
+              type: input.text
+              label: Limite de texte
+              description: Saisissez le nombre de caractères auquel le texte de l'article doit être limité.
+              pattern: '\d+'
+
+            article.display.text.formatting:
+              overridable: false
+              type: select.select
+              label: Formatage du texte
+              description: Sélectionnez la mise en forme que vous souhaitez utiliser pour afficher le texte de l'article.
+              options:
+                text: Texte brut
+                html: HTML
+
+            article.display.category.enabled:
+              overridable: false
+              type: select.select
+              label: Catégorie
+              description: Sélectionnez si le titre de la catégorie doit être affiché.
+              options:
+                show: Montrer
+                '': Cacher
+
+            article.display.title.enabled:
+              overridable: false
+              type: select.select
+              label: Titre
+              description: Sélectionnez si le titre de l'article doit être affiché.
+              options:
+                show: Montrer
+                '': Cacher
+
+            article.display.title.limit:
+              overridable: false
+              type: input.text
+              label: Limite de titre
+              description: Entrez le nombre maximum de caractères auquel le titre de l'article doit être limité.
+              pattern: '\d+(\.\d+){0,1}'
+
+            article.display.date.enabled:
+              overridable: false
+              type: select.select
+              label: Date
+              description: Sélectionnez si la date de l'article doit être affichée.
+              options:
+                created: Afficher la date de création
+                published: Afficher la date de publication
+                modified: Afficher la date de modification
+                '': Cacher
+
+            article.display.read_more.enabled:
+              overridable: false
+              type: select.select
+              label: Lien
+              description: "Sélectionnez si le lien 'En savoir plus' défini dans 'Réglages' doit être activé."
+              options:
+                show: Montrer
+                '': Cacher
+
+            article.display.read_more.target:
+              overridable: false
+              type: select.selectize
+              label: Cible
+              description: Choisir entre fenêtre parente (Self) ou Nouvelle fenêtre pour la cible.
+              placeholder: 'Sélectionner...'
+              default: _self
+              options:
+                  _self: Self
+                  _blank: New Window
+
+            article.display.read_more.layout:
+              overridable: false
+              type: select.selectize
+              label: Disposition
+              description: Comment voulez-vous afficher votre texte en savoir plus?
+              placeholder: 'Sélectionner...'
+              default: _block
+              options:
+                  _block: Bloc
+                  _button: Bouton
+                  _texte: Texte
+
+            .article.display.read_more.btclass:
+              type: input.selectize
+              label: Classe CSS 'En savoir plus'
+              default: button
+              description: Nom de classe CSS pour en savoir plus. Classe supplémentaire pour 'button' possible.
