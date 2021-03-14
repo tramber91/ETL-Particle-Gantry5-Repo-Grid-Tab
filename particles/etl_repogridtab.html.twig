@@ -50,6 +50,7 @@
 		{% if not case.tabremoval %}
 			{% if case_index == 1 %}{# accueil tab #}
 				{% if particle.tabhome %}{# add home tab - tab0 #}
+				{% if particle.title or particle.maindescription or particle.mainimage %}
 				<li>
 				  <span class="etl-tabs-wrapper-head">
 					<a href="#section-0">
@@ -63,6 +64,7 @@
 					</a>
 				  </span>
 				</li>
+				{% endif %}
 				{% endif %}
 			{% endif %}
 			<li>
@@ -88,6 +90,7 @@
 {% endif %}{# End check number of categories to remove tab if = 1 #}
 				{# Main Info Tab 0  #}
 				{% if particle.tabhome %}
+				{% if particle.title or particle.maindescription or particle.mainimage %}
 				<section id="section-0">{# add home tab - tab0 #}
 					<div class="etl-repogridtab-category">
 						<div class="etl-repogridtab-category-item{% if particle.mainimage %} etl-repogridtab-category-item-with-img{% endif %}">
@@ -114,6 +117,7 @@
 						</div>
 					</div>
 				</section>
+				{% endif %}
 				{% endif %}
 		{# Start loop category #}
         {% for case in particle.cases %}
