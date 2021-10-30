@@ -129,7 +129,7 @@ $content-section-padding: $content-padding / 3;
     display: block;
     cursor: pointer;
     padding: ($content-padding / 3) $content-padding;
-	background: fadeout($accent-color-1, 85%);
+	background: fadeout($accent-color-1, .85);
 	}
 	.etl-tabs-wrapper-head-subtitle,
 	.etl-tabs-wrapper-head-title {
@@ -687,7 +687,7 @@ $responsive-font-size: 1vw !default;
 			.etl-repogridtab-grid-item-author {
 				margin-top: $content-margin;
 				font-size: $core-font-size - 0.2;
-				color: transparentize($base-text-color, 40%);
+				color: transparentize($base-text-color, .4);
 				vertical-align:bottom;
 				img {
 					max-height: 25px;
@@ -735,7 +735,7 @@ $responsive-font-size: 1vw !default;
 			.etl-repogridtab-grid-item-button {
 				display: block;
 				margin-top: 5px;
-				color: darken($base-text-color, 40%);
+				color: darken($base-text-color, .4);
 				@include responsive-font($responsive-font-size - 0.2, $core-font-size, false, false);
 			}			
 			.etl-repogridtab-grid-item-link {
@@ -752,7 +752,7 @@ $responsive-font-size: 1vw !default;
 			color: transparent;
 		}
 		a.etl-repogridtab-grid-item-link-overlay:hover {
-			background-color: fadeout($accent-color-1, 90%);
+			background-color: fadeout($accent-color-1, .9);
 			color: $accent-color-1;
 			span {
 				float:right;
@@ -852,7 +852,7 @@ $responsive-font-size: 1vw !default;
 		  cursor:pointer;
 		}
 		input[type="radio"] + label {
-		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, 85%);
+		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, .85);
 		  //background: fadeout($accent-color-1, 85%);
 		  background-repeat:no-repeat;
 		  background-position:99% 20%;
@@ -891,13 +891,13 @@ $responsive-font-size: 1vw !default;
 			}
 		}
 		input[type="radio"]:hover + label {
-		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, 95%);
+		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, .95);
 		  //background: fadeout($accent-color-1, 95%);
 		  border-top: 1px solid fadeout($accent-color-1, 55%);
 		  background-repeat:no-repeat;
 		  background-position:99% 20%;
 		}
-		input[type="radio"]:checked + label {background:$white; border-top: 1px solid fadeout($accent-color-1, 65%);}
+		input[type="radio"]:checked + label {background:$white; border-top: 1px solid fadeout($accent-color-1, .65);}
 		input[type="radio"]:checked ~ article[id^="content-"] {
 		  height:auto;
 		  max-height:1000px;
@@ -977,7 +977,7 @@ $responsive-font-size: 1vw !default;
 	font-size: .9rem;
 	}
     &:hover, &:active, &:focus {
-        background: darken($accent-color-1, 10%);
+        background: darken($accent-color-1, .1);
         color: $white !important;
         outline: 0;
     }
@@ -1042,15 +1042,15 @@ $responsive-font-size: 1vw !default;
     }
     &.button-outline-light {
         background: transparent;
-        color: lighten($base-text-color, 10%) !important;
+        color: lighten($base-text-color, .10) !important;
 		font-weight: 400;
         border-color: $accent-color-1;
 			&:hover, &:active, &:focus {
-				background: fadeout($accent-color-1, 95%);
+				background: fadeout($accent-color-1, .95);
 			}
 		a {color: $accent-color-1 !important; font-weight: 500;
 			&:hover, &:active, &:focus {
-				color: lighten($accent-color-1, 8%) !important;
+				color: lighten($accent-color-1, .08) !important;
 			}
 		}
     }
@@ -1213,19 +1213,19 @@ $arrow-head-thickness: $shaft-thickness;
   transition: all 0.2s;
   
   &:hover {
-    color: lighten($accent-color-1, 8%);
+    color: lighten($accent-color-1, .08);
     
     > .the-arrow.-left {
       > .shaft {
         width: $newshaft-width;
         transition-delay: 0.1s;
-        background-color: lighten($accent-color-1, 8%);
+        background-color: lighten($accent-color-1, .08);
 
         &:before,
         &:after {
           width: $arrow-head-width;
           transition-delay: 0.1s;
-          background-color: lighten($accent-color-1, 8%);
+          background-color: lighten($accent-color-1, .08);
         }
 
         &:before {
