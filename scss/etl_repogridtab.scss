@@ -1,3 +1,4 @@
+$font-family-title: $base-heading-font;
 $content-section-padding: $content-padding / 3;
 .etl-tabs {
 	position: relative;
@@ -892,8 +893,8 @@ $responsive-font-size: 1vw !default;
 		}
 		input[type="radio"]:hover + label {
 		  background:url('gantry-theme://images/arrow-down.svg') fadeout($accent-color-1, .95);
-		  //background: fadeout($accent-color-1, 95%);
-		  border-top: 1px solid fadeout($accent-color-1, 55%);
+		  //background: fadeout($accent-color-1, .95);
+		  border-top: 1px solid fadeout($accent-color-1, .55);
 		  background-repeat:no-repeat;
 		  background-position:99% 20%;
 		}
@@ -1301,4 +1302,3 @@ $arrow-head-thickness: $shaft-thickness;
 .changelog-en ul{list-style:none;padding:0;}
 .changelog-en ul li{margin-bottom:.1rem;padding-left:6rem;}
 .changelog-en ul li:before{margin-left:-6rem;display:inline-block;border-radius:2px;color:#fff;font-weight:bold;margin-right:1rem;text-align:center;width:5rem;font-size:.8rem;font-style:normal;}
-
